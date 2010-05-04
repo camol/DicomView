@@ -4,6 +4,7 @@
 #include <QStringList>
 #include <QList>
 #include <QTreeWidget>
+#include "dicomitem.h"
 #include <dicomlib/dicomlib.hpp>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -23,25 +24,31 @@ MainWindow::~MainWindow()
 
 void MainWindow::Open()
 {
-    QStringList files = QFileDialog::getOpenFileNames(this,"Select one or more DICOM files to open","","DICOM (*.dcm)");
-    QStringList list = files;
+    QString fname = QFileDialog::getOpenFileName();
 
-    if (!QStringList(list).isEmpty())
+    if (fname != "")
     {
 
-        //int amount = QStringList(list).size();
+        dicom::DataSet dset;
+        dicom::Read(fname.toStdString(), dset);
+
+        DicomItem *dicom_file = new DicomItem(dset);
+
 
         QTreeWidgetItem *all_patients = new QTreeWidgetItem(ui->treeWidget);
         all_patients->setText(0, tr("All Patients"));
 
-        QTreeWidgetItem *name = new QTreeWidgetItem(all_patients);
-        name->setText(0, tr("No Name"));
+        QString text = QString::number(dicom_file->fpat_name(), 10);
 
+        QTreeWidgetItem *name = new QTreeWidgetItem(all_patients);
+        name->setText(0, text);
+/*
         QTreeWidgetItem *modality = new QTreeWidgetItem(name);
         modality->setText(0, tr("modality"));
 
         QTreeWidgetItem *series_desc = new QTreeWidgetItem(modality);
         series_desc->setText(0, tr("series_desc"));
+        */
 
 
         //int amount = QStringList(list).size();

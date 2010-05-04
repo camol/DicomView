@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed 28. Apr 18:54:15 2010
+** Created: Tue 4. May 19:48:48 2010
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QFrame>
 #include <QtGui/QHeaderView>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
@@ -38,6 +39,7 @@ public:
     QWidget *tab;
     QWidget *tab_2;
     QTableWidget *tableWidget;
+    QFrame *line;
     QMenuBar *menuBar;
     QMenu *menuOpen;
     QToolBar *mainToolBar;
@@ -56,10 +58,10 @@ public:
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         treeWidget = new QTreeWidget(centralWidget);
         treeWidget->setObjectName(QString::fromUtf8("treeWidget"));
-        treeWidget->setGeometry(QRect(0, 120, 256, 192));
+        treeWidget->setGeometry(QRect(0, 1, 256, 311));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(286, 119, 261, 201));
+        tabWidget->setGeometry(QRect(280, 0, 261, 311));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
         tabWidget->addTab(tab, QString());
@@ -69,6 +71,11 @@ public:
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setGeometry(QRect(0, 0, 256, 192));
         tabWidget->addTab(tab_2, QString());
+        line = new QFrame(centralWidget);
+        line->setObjectName(QString::fromUtf8("line"));
+        line->setGeometry(QRect(-3, 320, 611, 20));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
