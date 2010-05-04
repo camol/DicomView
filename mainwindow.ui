@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>631</width>
+    <height>522</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>0</x>
       <y>1</y>
-      <width>256</width>
-      <height>311</height>
+      <width>171</width>
+      <height>461</height>
      </rect>
     </property>
     <column>
@@ -32,48 +32,54 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>180</x>
       <y>0</y>
-      <width>261</width>
-      <height>311</height>
+      <width>441</width>
+      <height>461</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="tab_img">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>Image</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="tab_tags">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>Tags</string>
      </attribute>
      <widget class="QTableWidget" name="tableWidget">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>-10</x>
         <y>0</y>
-        <width>256</width>
-        <height>192</height>
+        <width>451</width>
+        <height>441</height>
        </rect>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>431</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="columnCount">
+       <number>2</number>
+      </property>
+      <column>
+       <property name="text">
+        <string>Tag Name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Value</string>
+       </property>
+      </column>
      </widget>
     </widget>
-   </widget>
-   <widget class="Line" name="line">
-    <property name="geometry">
-     <rect>
-      <x>-3</x>
-      <y>320</y>
-      <width>611</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -81,7 +87,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>631</width>
      <height>21</height>
     </rect>
    </property>

@@ -10,7 +10,9 @@ class DicomItem : public QTreeWidgetItem
 public:
     DicomItem(const dicom::DataSet &dset);;
 public:
-    int fpat_name() { return Patients_Name; }
+    int fhight_bit() { return Hight_Bit; }
+    int fbit_alloc() { return Bits_Allocated; }
+    int fbit_stored() { return Bits_Stored; }
 private:
     UINT16 Img_Type;
     UINT16 SOP_Class_UID;
