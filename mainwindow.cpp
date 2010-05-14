@@ -23,7 +23,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::Open()
 {
-    QString fname = QFileDialog::getOpenFileName();
+    QString fname = QFileDialog::getOpenFileName(this, tr("Open Dicom File"),"/home",tr("DICOM (*.dcm)"));
 
     if (fname != "")
     {
@@ -41,32 +41,15 @@ void MainWindow::Open()
         name->setText(0, QString::number(dicom_file->fhight_bit(), 10));
 
 
-        /*Wyswietlanie Tagów*/
-        ui->tableWidget->insertRow(0);
-        QTableWidgetItem *a11 = new QTableWidgetItem(0);
-        a11->setText( "High Bit" );
-        ui->tableWidget->setItem( 0, 0, a11 );
-        QTableWidgetItem *a12 = new QTableWidgetItem(0);
-        a12->setText( QString::number(dicom_file->fhight_bit(), 10) );
-        ui->tableWidget->setItem( 0, 1, a12 );
+        /***************Wyswietlanie Tagów***********************************/
+        /********************************************************************/
+        QTableWidgetItem *row = new QTableWidgetItem[20];
 
-
-        ui->tableWidget->insertRow(1);
-        QTableWidgetItem *a21 = new QTableWidgetItem(0);
-        a21->setText( "Bits Allocated" );
-        ui->tableWidget->setItem( 1, 0, a21 );
-        QTableWidgetItem *a22 = new QTableWidgetItem(0);
-        a22->setText( QString::number(dicom_file->fbit_alloc(), 10) );
-        ui->tableWidget->setItem( 1, 1, a22 );
-
-
-        ui->tableWidget->insertRow(2);
-        QTableWidgetItem *a31 = new QTableWidgetItem(0);
-        a31->setText( "Bits Stored" );
-        ui->tableWidget->setItem( 2, 0, a31 );
-        QTableWidgetItem *a32 = new QTableWidgetItem(0);
-        a32->setText( QString::number(dicom_file->fbit_stored(), 10) );
-        ui->tableWidget->setItem( 2, 1, a32 );
+        SetTableRow(0, row, "High Bit", QString::number(dicom_file->fhight_bit(), 10));
+        SetTableRow(1, row, "Bits Allocated", QString::number(dicom_file->fbit_alloc(), 10));
+        SetTableRow(2, row, "Bits Stored", QString::number(dicom_file->fbit_stored(), 10));
+        SetTableRow(3, row, "Window Width", QString::fromStdString(dicom_file->fw_w()));
+        //SetTableRow(3, row, "Patient Name", QString::fromStdString(dicom_file->fpat_name()));
 
 /*
         QTreeWidgetItem *modality = new QTreeWidgetItem(name);
@@ -81,6 +64,18 @@ void MainWindow::Open()
 
     }
 
+}
+
+void MainWindow::SetTableRow(int row_nr, QTableWidgetItem row[], QString name, QString value)
+{
+    ui->tableWidget->insertRow(row_nr);
+    row[2*row_nr].setText(name);
+    ui->tableWidget->setItem(row_nr, 0, &row[2*row_nr]);
+
+    row[2*row_nr+1].setText(value);
+    ui->tableWidget->setItem(row_nr, 1, &row[2*row_nr+1]);
+
+    return ;
 }
 
 void MainWindow::changeEvent(QEvent *e)

@@ -3,6 +3,7 @@
 
 #include <dicomlib/dicomlib.hpp>
 #include <QTreeWidgetItem>
+#include <strings.h>
 
 
 class DicomItem : public QTreeWidgetItem
@@ -13,6 +14,23 @@ public:
     int fhight_bit() { return Hight_Bit; }
     int fbit_alloc() { return Bits_Allocated; }
     int fbit_stored() { return Bits_Stored; }
+    int frows() { return Rows; }
+    int fcolumns() { return Columns; }
+    int fpix_spac() { return Pixel_Spacing; }
+    int fsam_per_pix() { return Samples_per_Pixel; }
+    std::string fphoto_inter() { return Photometric_Interpretetion; }
+    int fpix_rep() { return Pixel_Representation; }
+    int fs_img_pix_val() { return Smallest_Image_Pixel_Value; }
+    int fl_img_pix_val() { return Largest_Image_Pixel_Value; }
+    std::string fw_w() { return Window_Width; }
+    int fw_c() { return Window_Center; }
+    int fr_i() { return Rescale_Intercept; }
+    int fr_s() { return Rescale_Slope; }
+    int fr_t() { return Rescale_Type; }
+    int fimg_pos_pat() { return Image_Position_Patient; }
+
+
+    std::string fpat_name() {return Patients_Name;}
 private:
     UINT16 Img_Type;
     UINT16 SOP_Class_UID;
@@ -38,7 +56,7 @@ private:
     UINT16 Operators_Name;
     UINT16 Manufacturers_Model_Name;
 
-    UINT16 Patients_Name;
+    std::string Patients_Name;
     UINT16 Patients_ID;
     UINT16 Patients_Birth_Date;
     UINT16 Patients_Sex;
@@ -83,7 +101,7 @@ private:
     //UINT16 Instance_Number;
     UINT16 Patient_Orientation;
     UINT16 Image_Position;
-    UINT16 Image_Position_Patient;
+    UINT16 Image_Position_Patient;//
     UINT16 Image_Orientation;
     //UINT16 Image_Orientation_Patient;
     //UINT16 Frame_of_Reference_UID;
@@ -91,23 +109,23 @@ private:
     //UINT16 Position_Reference_Indicator;
     //UINT16 Slice_Location;
 
-    UINT16 Samples_per_Pixel;
-    UINT16 Photometric_Interpretetion;
-    UINT16 Rows;
-    UINT16 Columns;
-    UINT16 Pixel_Spacing;
-    UINT16 Bits_Allocated;
-    UINT16 Bits_Stored;
-    UINT16 Hight_Bit;
-    UINT16 Pixel_Representation;
-    UINT16 Smallest_Image_Pixel_Value;
-    UINT16 Largest_Image_Pixel_Value;
-    //UINT16 Pixel_Padding_Value;
-    UINT16 Window_Center;
-    UINT16 Window_Width;
-    UINT16 Rescale_Intercept;
-    UINT16 Rescale_Slope;
-    UINT16 Rescale_Type;
+    UINT16 Samples_per_Pixel;//
+    std::string Photometric_Interpretetion;//
+    UINT16 Rows;//
+    UINT16 Columns;//
+    UINT16 Pixel_Spacing;//
+    UINT16 Bits_Allocated;//
+    UINT16 Bits_Stored;//
+    UINT16 Hight_Bit;//
+    UINT16 Pixel_Representation;//
+    UINT16 Smallest_Image_Pixel_Value;//
+    UINT16 Largest_Image_Pixel_Value;//
+    //UINT16 Pixel_Padding_Value; nie wiem który to tag
+    UINT16 Window_Center;//
+    std::string Window_Width;//
+    UINT16 Rescale_Intercept;//
+    UINT16 Rescale_Slope;//
+    UINT16 Rescale_Type;//
 
 };
 

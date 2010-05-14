@@ -91,7 +91,7 @@
     <value type="QString">MOZ_PLUGIN_PATH=C:\Users\Camol\AppData\Roaming\Nowe Gadu-Gadu\_userdata</value>
     <value type="QString">NUMBER_OF_PROCESSORS=2</value>
     <value type="QString">OS=Windows_NT</value>
-    <value type="QString">PATH=d:\Qt\2010.02.1\mingw\bin;d:\Qt\2010.02.1\qt\bin;C:\Program Files\PC Connectivity Solution\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Dev-Cpp\libexec\gcc\mingw32\3.4.2;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;d:\MATLAB\R2007b\bin;d:\MATLAB\R2007b\bin\win32;C:\Program Files\Common Files\Adobe\AGL;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;d:\Modeltech_pe_edu_6.5\win32pe_edu;D:\Modeltech_pe_edu_6.5a\win32pe_edu</value>
+    <value type="QString">PATH=d:\Qt\2010.02.1\mingw\bin;d:\Qt\2010.02.1\qt\bin;C:\Program Files\PC Connectivity Solution\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Dev-Cpp\libexec\gcc\mingw32\3.4.2;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;d:\MATLAB\R2007b\bin;d:\MATLAB\R2007b\bin\win32;C:\Program Files\Common Files\Adobe\AGL;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files\doxygen\bin;d:\Modeltech_pe_edu_6.5\win32pe_edu;D:\Modeltech_pe_edu_6.5a\win32pe_edu</value>
     <value type="QString">PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC</value>
     <value type="QString">PROCESSOR_ARCHITECTURE=x86</value>
     <value type="QString">PROCESSOR_IDENTIFIER=x86 Family 15 Model 104 Stepping 1, AuthenticAMD</value>
@@ -141,7 +141,7 @@
     <value type="QString">MOZ_PLUGIN_PATH=C:\Users\Camol\AppData\Roaming\Nowe Gadu-Gadu\_userdata</value>
     <value type="QString">NUMBER_OF_PROCESSORS=2</value>
     <value type="QString">OS=Windows_NT</value>
-    <value type="QString">PATH=d:\Qt\2010.02.1\mingw\bin;d:\Qt\2010.02.1\qt\bin;C:\Program Files\PC Connectivity Solution\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Dev-Cpp\libexec\gcc\mingw32\3.4.2;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;d:\MATLAB\R2007b\bin;d:\MATLAB\R2007b\bin\win32;C:\Program Files\Common Files\Adobe\AGL;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;d:\Modeltech_pe_edu_6.5\win32pe_edu;D:\Modeltech_pe_edu_6.5a\win32pe_edu</value>
+    <value type="QString">PATH=d:\Qt\2010.02.1\mingw\bin;d:\Qt\2010.02.1\qt\bin;C:\Program Files\PC Connectivity Solution\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Dev-Cpp\libexec\gcc\mingw32\3.4.2;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;d:\MATLAB\R2007b\bin;d:\MATLAB\R2007b\bin\win32;C:\Program Files\Common Files\Adobe\AGL;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files\doxygen\bin;d:\Modeltech_pe_edu_6.5\win32pe_edu;D:\Modeltech_pe_edu_6.5a\win32pe_edu</value>
     <value type="QString">PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC</value>
     <value type="QString">PROCESSOR_ARCHITECTURE=x86</value>
     <value type="QString">PROCESSOR_IDENTIFIER=x86 Family 15 Model 104 Stepping 1, AuthenticAMD</value>

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTableWidgetItem>
 
 namespace Ui {
     class MainWindow;
@@ -12,6 +13,9 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+public:
+    void SetTableRow(int row_nr, QTableWidgetItem row[], QString name, QString value);
 
 public slots:
     void Open();
