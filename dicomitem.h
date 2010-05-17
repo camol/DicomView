@@ -6,7 +6,7 @@
 #include <strings.h>
 
 
-class DicomItem : public QTreeWidgetItem
+class DicomItem
 {
 public:
     DicomItem(const dicom::DataSet &dset);;
@@ -16,53 +16,83 @@ public:
     int fbit_stored() { return Bits_Stored; }
     int frows() { return Rows; }
     int fcolumns() { return Columns; }
-    int fpix_spac() { return Pixel_Spacing; }
+    std::string fpix_spac() { return Pixel_Spacing; }
     int fsam_per_pix() { return Samples_per_Pixel; }
     std::string fphoto_inter() { return Photometric_Interpretetion; }
     int fpix_rep() { return Pixel_Representation; }
-    int fs_img_pix_val() { return Smallest_Image_Pixel_Value; }
-    int fl_img_pix_val() { return Largest_Image_Pixel_Value; }
     std::string fw_w() { return Window_Width; }
-    int fw_c() { return Window_Center; }
-    int fr_i() { return Rescale_Intercept; }
-    int fr_s() { return Rescale_Slope; }
-    int fr_t() { return Rescale_Type; }
-    int fimg_pos_pat() { return Image_Position_Patient; }
+    std::string fw_c() { return Window_Center; }
+    std::string fr_i() { return Rescale_Intercept; }
+    std::string fr_s() { return Rescale_Slope; }
+    //std::string fr_t() { return Rescale_Type; }
 
+    std::string fimg_pos() { return Image_Position_Patient; }
+    std::string fimg_type() { return Img_Type; }
+    std::string fst_date() { return Study_Date; }
+    std::string fse_date() { return Series_Date; }
+    std::string facq_date() { return Acquisition_Date; }
+    std::string fst_time() { return Study_Time; }
+    std::string fse_time() { return Series_Time; }
+    std::string facq_time() { return Acquisition_Time; }
+    std::string fcon_time() { return Content_Time; }
+    std::string facc_nr() { return Accession_Number; }
+    std::string fmod() { return Modality; }
+    std::string fman() { return Manufacturer; }
+    std::string fst_desc() { return Study_Description; }
+    std::string fstat_name() { return Station_Name; }
+    std::string fse_desc() { return Series_Description; }
+    std::string fman_mod_name() { return Manufacturers_Model_Name; }
 
     std::string fpat_name() {return Patients_Name;}
-private:
-    UINT16 Img_Type;
-    UINT16 SOP_Class_UID;
-    UINT16 SOP_Instance_UID;
-    UINT16 Study_Date;
-    UINT16 Series_Date;
-    UINT16 Acquisition_Date;
-    //UINT16 Content_Date; ????????????????? nie wiem ktory to TAG
-    UINT16 Study_Time;
-    UINT16 Series_Time;
-    UINT16 Acquisition_Time;
-    //UINT16 Content_Time;    ????tez nie wiem
+    std::string fpat_birth() {return Patients_Birth_Date;}
+    std::string fpat_sex() {return Patients_Sex;}
+    std::string fpat_age() {return Patients_Age;}
+    std::string fpat_wei() {return Patients_Weight;}
+    std::string fpat_id() {return Patient_ID;}
 
-    //UINT16 Accession_Number;  nie wiem
-    UINT16 Modality;
-    UINT16 Manufactor;
+    std::string fsoft_ver() {return Software_Versions;}
+    std::string fst_id() {return Study_ID;}
+    std::string fse_nr() {return Series_Number;}
+    std::string facq_nr() { return Acquisition_Number; }
+    std::string fimg_pos_pat() { return Image_Position_Patient; }
+    std::string fimg_or_pat() { return Image_Orientation_Patient; }
+
+
+
+
+
+private:
+    std::string Img_Type;
+    std::string SOP_Class_UID;
+    double SOP_Instance_UID;
+    std::string Study_Date;
+    std::string Series_Date;
+    std::string Acquisition_Date;
+    //UINT16 Content_Date; ????????????????? nie wiem ktory to TAG
+    std::string Study_Time;
+    std::string Series_Time;
+    std::string Acquisition_Time;
+    std::string Content_Time;
+
+    std::string Accession_Number;
+    std::string Modality;
+    std::string Manufacturer;
     UINT16 Institution_Name;
 
-    UINT16 Station_Name;
-    UINT16 Study_Description;
-    UINT16 Series_Description;
-    UINT16 Performing_Physicians_Name;
+    std::string Station_Name;
+    std::string Study_Description;
+    std::string Series_Description;
+    std::string Performing_Physicians_Name;
     UINT16 Operators_Name;
-    UINT16 Manufacturers_Model_Name;
+    std::string Manufacturers_Model_Name;
 
     std::string Patients_Name;
-    UINT16 Patients_ID;
-    UINT16 Patients_Birth_Date;
-    UINT16 Patients_Sex;
-    UINT16 Patients_Age;
-    UINT16 Patients_Weight;
+    std::string Patients_Birth_Date;
+    std::string Patients_Sex;
+    std::string Patients_Age;
+    std::string Patients_Weight;
     UINT16 Additional_Patient_History;
+    std::string Patient_ID;
 
     //UINT16 Scanning_Sequence;   niewiem
     //UINT16 Sequence_Variant; niewiem
@@ -79,8 +109,8 @@ private:
     //UINT16 Spacing_Between_Slices;
     //UINT16 Number_of_Phase_Encoding_Steps;
     //UINT16 Echo_Train_Length;
-    UINT16 Pixel_Bandwidth;
-    UINT16 Software_Versions;
+
+    std::string Software_Versions;
     //UINT16 Protocol_Name;
     //UINT16 Heart_Rate;
     //UINT16 Cardiac_Number_of_Images;
@@ -92,17 +122,18 @@ private:
     //UINT16 Flip_Angle;
     //UINT16 SAR;
 
-    UINT16 Patient_Position;
+
+    std::string Patient_Position;
     UINT16 Study_Instance_UID;
-    UINT16 Series_Instance_UID;
-    UINT16 Study_ID;
-    UINT16 Series_Number;
-    UINT16 Acquisition_Number;
-    //UINT16 Instance_Number;
-    UINT16 Patient_Orientation;
-    UINT16 Image_Position;
-    UINT16 Image_Position_Patient;//
-    UINT16 Image_Orientation;
+    std::string Series_Instance_UID;
+    std::string Study_ID;
+    std::string Series_Number;
+    std::string Acquisition_Number;
+    //UINT16 Instance_Number; nie wiem jaki tag
+    //std::string Patient_Orientation; brak typu
+    std::string Image_Position_Patient;
+    std::string Image_Orientation_Patient;//
+
     //UINT16 Image_Orientation_Patient;
     //UINT16 Frame_of_Reference_UID;
     //UINT16 Images_in_Acquisition;
@@ -113,19 +144,19 @@ private:
     std::string Photometric_Interpretetion;//
     UINT16 Rows;//
     UINT16 Columns;//
-    UINT16 Pixel_Spacing;//
+    std::string Pixel_Spacing;//
     UINT16 Bits_Allocated;//
     UINT16 Bits_Stored;//
     UINT16 Hight_Bit;//
     UINT16 Pixel_Representation;//
-    UINT16 Smallest_Image_Pixel_Value;//
-    UINT16 Largest_Image_Pixel_Value;//
+    //std::string Smallest_Image_Pixel_Value;//
+    //std::string Largest_Image_Pixel_Value;//
     //UINT16 Pixel_Padding_Value; nie wiem który to tag
-    UINT16 Window_Center;//
+    std::string Window_Center;//
     std::string Window_Width;//
-    UINT16 Rescale_Intercept;//
-    UINT16 Rescale_Slope;//
-    UINT16 Rescale_Type;//
+    std::string Rescale_Intercept;//
+    std::string Rescale_Slope;//
+    std::string Rescale_Type;//
 
 };
 
