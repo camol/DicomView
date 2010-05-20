@@ -8,6 +8,8 @@ namespace Ui {
     class MainWindow;
 }
 
+class DicomItem;
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -25,6 +27,7 @@ protected:
 
 private:
     Ui::MainWindow *ui;
+    DicomItem *dicom_file;
 };
 
 #endif // MAINWINDOW_H

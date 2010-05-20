@@ -36,12 +36,28 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_img">
      <attribute name="title">
       <string>Image</string>
      </attribute>
+     <widget class="QGraphicsView" name="graphicsView">
+      <property name="geometry">
+       <rect>
+        <x>-5</x>
+        <y>1</y>
+        <width>531</width>
+        <height>451</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>531</width>
+        <height>451</height>
+       </size>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_tags">
      <attribute name="title">

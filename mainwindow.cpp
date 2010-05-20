@@ -9,16 +9,20 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    dicom_file(0)
 {
     ui->setupUi(this);
     QObject::connect(ui->actionOpen,SIGNAL(triggered()),this,SLOT(Open()));
+    ui->graphicsView->setScene(new QGraphicsScene(this));
+    ui->graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete dicom_file;
 }
 
 void MainWindow::Open()
@@ -30,20 +34,32 @@ void MainWindow::Open()
 
         dicom::DataSet dset;
         dicom::Read(fname.toStdString(), dset);
+        delete dicom_file;
 
-        DicomItem *dicom_file = new DicomItem(dset);
+        dicom_file = new DicomItem(dset);
 
+        /***************IMAGE DISPLAY***********************************/
+        /****************START*******************************************/
 
-        QTreeWidgetItem *all_patients = new QTreeWidgetItem(ui->treeWidget);
-        all_patients->setText(0, tr("All Patients"));
+        ui->graphicsView->scene()->clear();
+        UINT16 winCenter;
+        UINT16 winWidth;
+        bool ok;
+        std::vector<int> min(dicom_file->min());
+        std::vector<int> max(dicom_file->max());
+        dicom_file->setWindowMin(min[0]);
+        dicom_file->setWindowMax(max[0]);
+        ui->graphicsView->scene()->addPixmap(dicom_file->toPixmap());
 
-        QTreeWidgetItem *name = new QTreeWidgetItem(all_patients);
-        name->setText(0, QString::number(dicom_file->fhight_bit(), 10));
+        ui->graphicsView->setSceneRect(0, 0, dicom_file->fcolumns(), dicom_file->frows());
+
+        /***************IMAGE DISPLAY***********************************/
+        /****************START*******************************************/
 
 
         /***************TAGS DISPLAY***********************************/
         /****************START*******************************************/
-        QTableWidgetItem *row = new QTableWidgetItem[80];
+        QTableWidgetItem *row = new QTableWidgetItem[88];
 
         SetTableRow(0, row, "Image Type", QString::fromStdString(dicom_file->fimg_type()));
         SetTableRow(1, row, "Study Date", QString::fromStdString(dicom_file->fst_date()));
@@ -84,12 +100,22 @@ void MainWindow::Open()
         SetTableRow(36, row, "Bits Allocated", QString::number(dicom_file->fbit_alloc(), 10));
         SetTableRow(37, row, "Bits Stored", QString::number(dicom_file->fbit_stored(), 10));
         SetTableRow(38, row, "High Bit", QString::number(dicom_file->fhight_bit(), 10));
-
+        SetTableRow(39, row, "Study Instance UID", QString::fromStdString(dicom_file->fst_ins_uid()));
+        SetTableRow(40, row, "SOP Class UID", QString::fromStdString(dicom_file->fsop_cl_uid()));
+        SetTableRow(41, row, "SOP Instance UID", QString::fromStdString(dicom_file->fsop_ins_uid()));
 
         /***************TAGS DISPLAY***********************************/
         /****************END************************************************/
 
-/*
+
+        //DRZEWO
+        /*QTreeWidgetItem *all_patients = new QTreeWidgetItem(ui->treeWidget);
+        all_patients->setText(0, tr("All Patients"));
+
+        QTreeWidgetItem *name = new QTreeWidgetItem(all_patients);
+        name->setText(0, QString::number(dicom_file->fhight_bit(), 10)); */
+
+        /*
         QTreeWidgetItem *modality = new QTreeWidgetItem(name);
         modality->setText(0, tr("modality"));
 

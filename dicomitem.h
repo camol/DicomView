@@ -4,14 +4,31 @@
 #include <dicomlib/dicomlib.hpp>
 #include <QTreeWidgetItem>
 #include <strings.h>
+#include <QImage>
+#include <QPixmap>
 
 
 class DicomItem
 {
 public:
-    DicomItem(const dicom::DataSet &dset);;
+    DicomItem(const dicom::DataSet &dset);
+
 public:
-    int fhight_bit() { return Hight_Bit; }
+        void getImage(UINT8 **aImage, int aWindowMin = 0, int aWindowMax = 0) const;
+        void setWindowMin(int aMin) { iWindowMin = aMin; }
+        void setWindowMax(int aMax) { iWindowMax = aMax; }
+        QImage toImage() const;
+        QPixmap toPixmap() const;
+        std::vector<int> min() const;
+        std::vector<int> max() const;
+
+    private:
+            dicom::Value iPixelData;
+            int iWindowMin;
+            int iWindowMax;
+
+public:
+    int fhight_bit() { return High_Bit; }
     int fbit_alloc() { return Bits_Allocated; }
     int fbit_stored() { return Bits_Stored; }
     int frows() { return Rows; }
@@ -24,8 +41,6 @@ public:
     std::string fw_c() { return Window_Center; }
     std::string fr_i() { return Rescale_Intercept; }
     std::string fr_s() { return Rescale_Slope; }
-    //std::string fr_t() { return Rescale_Type; }
-
     std::string fimg_pos() { return Image_Position_Patient; }
     std::string fimg_type() { return Img_Type; }
     std::string fst_date() { return Study_Date; }
@@ -57,14 +72,18 @@ public:
     std::string fimg_pos_pat() { return Image_Position_Patient; }
     std::string fimg_or_pat() { return Image_Orientation_Patient; }
 
+    std::string fst_ins_uid() { return Study_Instance_UID.str(); }
+    std::string fsop_cl_uid() { return SOP_Class_UID.str(); }
+    std::string fsop_ins_uid() { return SOP_Instance_UID.str(); }
+
 
 
 
 
 private:
     std::string Img_Type;
-    std::string SOP_Class_UID;
-    double SOP_Instance_UID;
+    dicom::UID SOP_Class_UID;
+    dicom::UID SOP_Instance_UID;
     std::string Study_Date;
     std::string Series_Date;
     std::string Acquisition_Date;
@@ -77,12 +96,12 @@ private:
     std::string Accession_Number;
     std::string Modality;
     std::string Manufacturer;
-    UINT16 Institution_Name;
+    dicom::UID Institution_Name;
 
     std::string Station_Name;
     std::string Study_Description;
     std::string Series_Description;
-    std::string Performing_Physicians_Name;
+    dicom::UID Performing_Physicians_Name;
     UINT16 Operators_Name;
     std::string Manufacturers_Model_Name;
 
@@ -124,7 +143,7 @@ private:
 
 
     std::string Patient_Position;
-    UINT16 Study_Instance_UID;
+    dicom::UID Study_Instance_UID;
     std::string Series_Instance_UID;
     std::string Study_ID;
     std::string Series_Number;
@@ -147,7 +166,7 @@ private:
     std::string Pixel_Spacing;//
     UINT16 Bits_Allocated;//
     UINT16 Bits_Stored;//
-    UINT16 Hight_Bit;//
+    UINT16 High_Bit;//
     UINT16 Pixel_Representation;//
     //std::string Smallest_Image_Pixel_Value;//
     //std::string Largest_Image_Pixel_Value;//
