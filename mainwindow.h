@@ -21,6 +21,12 @@ public:
 
 public slots:
     void Open();
+    void PresDef();
+    void PresSkull();
+    void PresLung();
+    void PresAbdomen();
+    void PresBone();
+    void PresSpine();
 
 protected:
     void changeEvent(QEvent *e);

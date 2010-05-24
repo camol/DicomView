@@ -14,6 +14,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     QObject::connect(ui->actionOpen,SIGNAL(triggered()),this,SLOT(Open()));
+    QObject::connect(ui->actionDefault,SIGNAL(triggered()),this,SLOT(PresDef()));
+    QObject::connect(ui->actionSkull,SIGNAL(triggered()),this,SLOT(PresSkull()));
+    QObject::connect(ui->actionLung,SIGNAL(triggered()),this,SLOT(PresLung()));
+    QObject::connect(ui->actionAbdomen,SIGNAL(triggered()),this,SLOT(PresAbdomen()));
+    QObject::connect(ui->actionBone,SIGNAL(triggered()),this,SLOT(PresBone()));
+    QObject::connect(ui->actionSpine,SIGNAL(triggered()),this,SLOT(PresSpine()));
+
     ui->graphicsView->setScene(new QGraphicsScene(this));
     ui->graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
 
@@ -124,7 +131,8 @@ void MainWindow::Open()
         */
 
 
-
+        ui->lname->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fpat_name())));
+        ui->lmod->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fmod())));
 
     }
 
@@ -140,6 +148,73 @@ void MainWindow::SetTableRow(int row_nr, QTableWidgetItem row[], QString name, Q
     ui->tableWidget->setItem(row_nr, 1, &row[2*row_nr+1]);
 
     return ;
+}
+
+void MainWindow::PresDef()
+{
+        if (dicom_file)
+        {
+            dicom_file->setWindowMin(939);
+            dicom_file->setWindowMax(1227);
+            ui->graphicsView->scene()->clear();
+            ui->graphicsView->scene()->addPixmap(dicom_file->toPixmap());
+        }
+}
+
+void MainWindow::PresAbdomen()
+{
+    if (dicom_file)
+    {
+        dicom_file->setWindowMin(826);
+        dicom_file->setWindowMax(1291);
+        ui->graphicsView->scene()->clear();
+        ui->graphicsView->scene()->addPixmap(dicom_file->toPixmap());
+    }
+}
+
+void MainWindow::PresBone()
+{
+    if (dicom_file)
+    {
+        dicom_file->setWindowMin(79);
+        dicom_file->setWindowMax(2548);
+        ui->graphicsView->scene()->clear();
+        ui->graphicsView->scene()->addPixmap(dicom_file->toPixmap());
+    }
+}
+
+void MainWindow::PresLung()
+{
+    if (dicom_file)
+    {
+        dicom_file->setWindowMin(0);
+        dicom_file->setWindowMax(1414);
+        ui->graphicsView->scene()->clear();
+        ui->graphicsView->scene()->addPixmap(dicom_file->toPixmap());
+    }
+}
+
+
+void MainWindow::PresSkull()
+{
+    if (dicom_file)
+    {
+        dicom_file->setWindowMin(1002);
+        dicom_file->setWindowMax(1098);
+        ui->graphicsView->scene()->clear();
+        ui->graphicsView->scene()->addPixmap(dicom_file->toPixmap());
+    }
+}
+
+void MainWindow::PresSpine()
+{
+    if (dicom_file)
+    {
+        dicom_file->setWindowMin(896);
+        dicom_file->setWindowMax(1221);
+        ui->graphicsView->scene()->clear();
+        ui->graphicsView->scene()->addPixmap(dicom_file->toPixmap());
+    }
 }
 
 void MainWindow::changeEvent(QEvent *e)
