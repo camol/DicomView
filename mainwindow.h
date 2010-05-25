@@ -18,6 +18,7 @@ public:
 
 public:
     void SetTableRow(int row_nr, QTableWidgetItem row[], QString name, QString value);
+    double zvalue;
 
 public slots:
     void Open();
@@ -27,6 +28,9 @@ public slots:
     void PresAbdomen();
     void PresBone();
     void PresSpine();
+    void zoomChanged_p25();
+    void zoomChanged_m25();
+    void zoomChanged_100();
 
 protected:
     void changeEvent(QEvent *e);

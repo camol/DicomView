@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     dicom_file(0)
 {
     ui->setupUi(this);
+    zvalue=1;
     QObject::connect(ui->actionOpen,SIGNAL(triggered()),this,SLOT(Open()));
     QObject::connect(ui->actionDefault,SIGNAL(triggered()),this,SLOT(PresDef()));
     QObject::connect(ui->actionSkull,SIGNAL(triggered()),this,SLOT(PresSkull()));
@@ -20,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->actionAbdomen,SIGNAL(triggered()),this,SLOT(PresAbdomen()));
     QObject::connect(ui->actionBone,SIGNAL(triggered()),this,SLOT(PresBone()));
     QObject::connect(ui->actionSpine,SIGNAL(triggered()),this,SLOT(PresSpine()));
+    QObject::connect(ui->actionZoom_50,SIGNAL(triggered()),this,SLOT(zoomChanged_p25()));
+    QObject::connect(ui->actionZoom_51,SIGNAL(triggered()),this,SLOT(zoomChanged_m25()));
+    QObject::connect(ui->actionZoom_100,SIGNAL(triggered()),this,SLOT(zoomChanged_100()));
 
     ui->graphicsView->setScene(new QGraphicsScene(this));
     ui->graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
@@ -133,9 +137,42 @@ void MainWindow::Open()
 
         ui->lname->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fpat_name())));
         ui->lmod->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fmod())));
+        ui->lseries->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fse_desc())));
+        //ui->ldate->setText(QString("%1 ").arg((QDate::toString ( QString::fromStdString(dicom_file->fst_date()), "yyyy.MM.dd" ))));
+        //QDate date=QDate::toString("20040301","yyyyMMdd");
 
     }
 
+}
+
+void MainWindow::zoomChanged_p25()
+{
+    if (dicom_file)
+    {
+        zvalue=zvalue+0.25;
+        ui->graphicsView->setTransform(QTransform::fromScale(zvalue,zvalue));
+    }
+}
+
+void MainWindow::zoomChanged_m25()
+{
+    if (dicom_file)
+    {
+        if(zvalue!=0)
+        {
+            zvalue=zvalue-0.25;
+            ui->graphicsView->setTransform(QTransform::fromScale(zvalue,zvalue));
+        }
+    }
+}
+
+void MainWindow::zoomChanged_100()
+{
+    if (dicom_file)
+    {
+        zvalue=1;
+        ui->graphicsView->setTransform(QTransform::fromScale(zvalue,zvalue));
+    }
 }
 
 void MainWindow::SetTableRow(int row_nr, QTableWidgetItem row[], QString name, QString value)

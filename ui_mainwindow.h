@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon 24. May 23:51:04 2010
+** Created: Tue 25. May 22:32:50 2010
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -43,12 +43,17 @@ public:
     QAction *actionMediastinum;
     QAction *actionBone;
     QAction *actionSpine;
+    QAction *actionZoom_50;
+    QAction *actionZoom_51;
+    QAction *actionZoom_100;
     QWidget *centralWidget;
     QTabWidget *tabWidget;
     QWidget *tab_img;
     QGraphicsView *graphicsView;
     QLabel *lname;
     QLabel *lmod;
+    QLabel *lseries;
+    QLabel *ldate;
     QWidget *tab_tags;
     QHBoxLayout *horizontalLayout;
     QTableWidget *tableWidget;
@@ -58,6 +63,7 @@ public:
     QMenu *menuOpen;
     QMenu *menuImage;
     QMenu *menuPresets;
+    QMenu *menuZoom;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -85,6 +91,12 @@ public:
         actionBone->setObjectName(QString::fromUtf8("actionBone"));
         actionSpine = new QAction(MainWindow);
         actionSpine->setObjectName(QString::fromUtf8("actionSpine"));
+        actionZoom_50 = new QAction(MainWindow);
+        actionZoom_50->setObjectName(QString::fromUtf8("actionZoom_50"));
+        actionZoom_51 = new QAction(MainWindow);
+        actionZoom_51->setObjectName(QString::fromUtf8("actionZoom_51"));
+        actionZoom_100 = new QAction(MainWindow);
+        actionZoom_100->setObjectName(QString::fromUtf8("actionZoom_100"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
@@ -247,6 +259,76 @@ public:
         palette2.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
         lmod->setPalette(palette2);
         lmod->setFont(font);
+        lseries = new QLabel(tab_img);
+        lseries->setObjectName(QString::fromUtf8("lseries"));
+        lseries->setGeometry(QRect(10, 350, 121, 21));
+        lseries->setMinimumSize(QSize(61, 21));
+        QPalette palette3;
+        palette3.setBrush(QPalette::Active, QPalette::WindowText, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::Light, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::Midlight, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::Dark, brush2);
+        palette3.setBrush(QPalette::Active, QPalette::Mid, brush3);
+        palette3.setBrush(QPalette::Active, QPalette::Text, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::BrightText, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette3.setBrush(QPalette::Active, QPalette::Base, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::Shadow, brush);
+        palette3.setBrush(QPalette::Active, QPalette::AlternateBase, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::ToolTipBase, brush4);
+        palette3.setBrush(QPalette::Active, QPalette::ToolTipText, brush);
+        palette3.setBrush(QPalette::Inactive, QPalette::WindowText, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::Light, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::Midlight, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::Dark, brush2);
+        palette3.setBrush(QPalette::Inactive, QPalette::Mid, brush3);
+        palette3.setBrush(QPalette::Inactive, QPalette::Text, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::BrightText, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette3.setBrush(QPalette::Inactive, QPalette::Base, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
+        palette3.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush4);
+        palette3.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush);
+        palette3.setBrush(QPalette::Disabled, QPalette::WindowText, brush2);
+        palette3.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette3.setBrush(QPalette::Disabled, QPalette::Light, brush1);
+        palette3.setBrush(QPalette::Disabled, QPalette::Midlight, brush1);
+        palette3.setBrush(QPalette::Disabled, QPalette::Dark, brush2);
+        palette3.setBrush(QPalette::Disabled, QPalette::Mid, brush3);
+        palette3.setBrush(QPalette::Disabled, QPalette::Text, brush2);
+        palette3.setBrush(QPalette::Disabled, QPalette::BrightText, brush1);
+        palette3.setBrush(QPalette::Disabled, QPalette::ButtonText, brush2);
+        palette3.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette3.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette3.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
+        palette3.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
+        palette3.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush4);
+        palette3.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
+        lseries->setPalette(palette3);
+        QFont font1;
+        font1.setBold(true);
+        font1.setWeight(75);
+        lseries->setFont(font1);
+        ldate = new QLabel(tab_img);
+        ldate->setObjectName(QString::fromUtf8("ldate"));
+        ldate->setGeometry(QRect(360, 60, 61, 21));
+        ldate->setMinimumSize(QSize(61, 21));
+        QPalette palette4;
+        palette4.setBrush(QPalette::Active, QPalette::WindowText, brush1);
+        palette4.setBrush(QPalette::Active, QPalette::Text, brush1);
+        palette4.setBrush(QPalette::Inactive, QPalette::WindowText, brush1);
+        palette4.setBrush(QPalette::Inactive, QPalette::Text, brush1);
+        QBrush brush5(QColor(120, 120, 120, 255));
+        brush5.setStyle(Qt::SolidPattern);
+        palette4.setBrush(QPalette::Disabled, QPalette::WindowText, brush5);
+        palette4.setBrush(QPalette::Disabled, QPalette::Text, brush5);
+        ldate->setPalette(palette4);
+        ldate->setFont(font1);
         tabWidget->addTab(tab_img, QString());
         tab_tags = new QWidget();
         tab_tags->setObjectName(QString::fromUtf8("tab_tags"));
@@ -257,17 +339,17 @@ public:
         tableWidget = new QTableWidget(tab_tags);
         if (tableWidget->columnCount() < 2)
             tableWidget->setColumnCount(2);
-        QFont font1;
-        font1.setPointSize(11);
-        font1.setBold(true);
-        font1.setWeight(75);
+        QFont font2;
+        font2.setPointSize(11);
+        font2.setBold(true);
+        font2.setWeight(75);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         __qtablewidgetitem->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter|Qt::AlignCenter);
-        __qtablewidgetitem->setFont(font1);
+        __qtablewidgetitem->setFont(font2);
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
         __qtablewidgetitem1->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter|Qt::AlignCenter);
-        __qtablewidgetitem1->setFont(font1);
+        __qtablewidgetitem1->setFont(font2);
         tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setEnabled(true);
@@ -304,6 +386,8 @@ public:
         menuImage->setObjectName(QString::fromUtf8("menuImage"));
         menuPresets = new QMenu(menuImage);
         menuPresets->setObjectName(QString::fromUtf8("menuPresets"));
+        menuZoom = new QMenu(menuImage);
+        menuZoom->setObjectName(QString::fromUtf8("menuZoom"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -318,6 +402,7 @@ public:
         menuOpen->addSeparator();
         menuOpen->addAction(actionQuit_Program);
         menuImage->addAction(menuPresets->menuAction());
+        menuImage->addAction(menuZoom->menuAction());
         menuPresets->addAction(actionDefault);
         menuPresets->addAction(actionSkull);
         menuPresets->addAction(actionLung);
@@ -325,6 +410,10 @@ public:
         menuPresets->addAction(actionMediastinum);
         menuPresets->addAction(actionBone);
         menuPresets->addAction(actionSpine);
+        menuZoom->addAction(actionZoom_50);
+        menuZoom->addAction(actionZoom_51);
+        menuZoom->addSeparator();
+        menuZoom->addAction(actionZoom_100);
 
         retranslateUi(MainWindow);
         QObject::connect(actionQuit_Program, SIGNAL(triggered()), MainWindow, SLOT(close()));
@@ -338,7 +427,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
-        actionOpen->setText(QApplication::translate("MainWindow", "Open...", 0, QApplication::UnicodeUTF8));
+        actionOpen->setText(QApplication::translate("MainWindow", "Open...         ", 0, QApplication::UnicodeUTF8));
         actionOpen->setShortcut(QApplication::translate("MainWindow", "Ctrl+O", 0, QApplication::UnicodeUTF8));
         actionQuit_Program->setText(QApplication::translate("MainWindow", "Quit", 0, QApplication::UnicodeUTF8));
         actionDefault->setText(QApplication::translate("MainWindow", "Default", 0, QApplication::UnicodeUTF8));
@@ -348,8 +437,15 @@ public:
         actionMediastinum->setText(QApplication::translate("MainWindow", "Mediastinum", 0, QApplication::UnicodeUTF8));
         actionBone->setText(QApplication::translate("MainWindow", "Bone", 0, QApplication::UnicodeUTF8));
         actionSpine->setText(QApplication::translate("MainWindow", "Spine", 0, QApplication::UnicodeUTF8));
+        actionZoom_50->setText(QApplication::translate("MainWindow", "Zoom +25%   ", 0, QApplication::UnicodeUTF8));
+        actionZoom_50->setShortcut(QApplication::translate("MainWindow", "Ctrl+=", 0, QApplication::UnicodeUTF8));
+        actionZoom_51->setText(QApplication::translate("MainWindow", "Zoom -25% ", 0, QApplication::UnicodeUTF8));
+        actionZoom_51->setShortcut(QApplication::translate("MainWindow", "Ctrl+Backspace", 0, QApplication::UnicodeUTF8));
+        actionZoom_100->setText(QApplication::translate("MainWindow", "Zoom 100%", 0, QApplication::UnicodeUTF8));
         lname->setText(QString());
         lmod->setText(QString());
+        lseries->setText(QString());
+        ldate->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_img), QApplication::translate("MainWindow", "Image", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Tag Name", 0, QApplication::UnicodeUTF8));
@@ -361,6 +457,7 @@ public:
         menuOpen->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
         menuImage->setTitle(QApplication::translate("MainWindow", "Image", 0, QApplication::UnicodeUTF8));
         menuPresets->setTitle(QApplication::translate("MainWindow", "Presets", 0, QApplication::UnicodeUTF8));
+        menuZoom->setTitle(QApplication::translate("MainWindow", "Zoom", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
