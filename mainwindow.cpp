@@ -4,6 +4,8 @@
 #include <QStringList>
 #include <QList>
 #include <QTreeWidget>
+
+#include "MyGraphicsView.h"
 #include "dicomitem.h"
 #include <dicomlib/dicomlib.hpp>
 
@@ -14,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     zvalue=1;
+    dragVal = true;
+    windowVal = false;
     QObject::connect(ui->actionOpen,SIGNAL(triggered()),this,SLOT(Open()));
     QObject::connect(ui->actionDefault,SIGNAL(triggered()),this,SLOT(PresDef()));
     QObject::connect(ui->actionSkull,SIGNAL(triggered()),this,SLOT(PresSkull()));
@@ -24,9 +28,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->actionZoom_50,SIGNAL(triggered()),this,SLOT(zoomChanged_p25()));
     QObject::connect(ui->actionZoom_51,SIGNAL(triggered()),this,SLOT(zoomChanged_m25()));
     QObject::connect(ui->actionZoom_100,SIGNAL(triggered()),this,SLOT(zoomChanged_100()));
+    QObject::connect(ui->actionRotate_Right,SIGNAL(triggered()),this,SLOT(rotateRight()));
+    QObject::connect(ui->actionRotate_Left,SIGNAL(triggered()),this,SLOT(rotateLeft()));
+    QObject::connect(ui->actionDrag,SIGNAL(triggered()),this,SLOT(setDrag()));
+    QObject::connect(ui->actionManual_Windowing,SIGNAL(triggered()),this,SLOT(setWindowing()));
 
     ui->graphicsView->setScene(new QGraphicsScene(this));
-    ui->graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
+    ui->graphicsView->setDragMode(MyGraphicsView::ScrollHandDrag);
 
 }
 
@@ -145,6 +153,28 @@ void MainWindow::Open()
 
 }
 
+void MainWindow::setDrag()
+{
+    if(ui->actionManual_Windowing->isChecked() == true)
+    {
+        ui->actionManual_Windowing->setChecked(false);
+        ui->actionDrag->setChecked(true);
+        dragVal=true;
+        windowVal=false;
+    }
+}
+
+void MainWindow::setWindowing()
+{
+    if(ui->actionDrag->isChecked() == true)
+    {
+        ui->actionDrag->setChecked(false);
+        ui->actionManual_Windowing->setChecked(true);
+        dragVal=false;
+        windowVal=true;
+    }
+}
+
 void MainWindow::zoomChanged_p25()
 {
     if (dicom_file)
@@ -172,6 +202,22 @@ void MainWindow::zoomChanged_100()
     {
         zvalue=1;
         ui->graphicsView->setTransform(QTransform::fromScale(zvalue,zvalue));
+    }
+}
+
+void MainWindow::rotateRight()
+{
+    if (dicom_file)
+    {
+        ui->graphicsView->rotate(90);
+    }
+}
+
+void MainWindow::rotateLeft()
+{
+    if (dicom_file)
+    {
+        ui->graphicsView->rotate(-90);
     }
 }
 
@@ -253,6 +299,42 @@ void MainWindow::PresSpine()
         ui->graphicsView->scene()->addPixmap(dicom_file->toPixmap());
     }
 }
+
+void MainWindow::mousePressEvent(QMouseEvent* event)
+{
+    setCursor(Qt::ClosedHandCursor);
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent* event)
+{
+    setCursor(Qt::OpenHandCursor);
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent* event) {
+    if(dicom_file)
+    {
+        if(dragVal)
+        {
+            QPointF delta = ui->graphicsView->mapToScene(ui->graphicsView->LastPanPoint) - ui->graphicsView->mapToScene(ui->graphicsView->EventPos);
+            ui->graphicsView->SetCenter(ui->graphicsView->GetCenter() + delta);
+        }
+
+        else if(windowVal)
+        {
+            ui->label->setText(QString("%1 ").arg(QString::number(ui->graphicsView->diffX,10)));
+            ui->label2->setText(QString("%1 ").arg(QString::number(ui->graphicsView->diffY,10)));
+
+            dicom_file->setWindowMin(dicom_file->CurrentWindowMin() + ui->graphicsView->diffX);
+            dicom_file->setWindowMax(dicom_file->CurrentWindowMax() + ui->graphicsView->diffY);
+
+            ui->label3->setText(QString("%1 ").arg(QString::number(dicom_file->CurrentWindowMin(),10)));
+            ui->label4->setText(QString("%1 ").arg(QString::number(dicom_file->CurrentWindowMax(),10)));
+            ui->graphicsView->scene()->clear();
+            ui->graphicsView->scene()->addPixmap(dicom_file->toPixmap());
+        }
+    }
+}
+
 
 void MainWindow::changeEvent(QEvent *e)
 {

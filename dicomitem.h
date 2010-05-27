@@ -17,6 +17,8 @@ public:
         void getImage(UINT8 **aImage, int aWindowMin = 0, int aWindowMax = 0) const;
         void setWindowMin(int aMin) { iWindowMin = aMin; }
         void setWindowMax(int aMax) { iWindowMax = aMax; }
+        int CurrentWindowMin() { return iWindowMin; }
+        int CurrentWindowMax() { return iWindowMax; }
         QImage toImage() const;
         QPixmap toPixmap() const;
         std::vector<int> min() const;

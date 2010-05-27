@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTableWidgetItem>
+#include <QPointF>
 
 namespace Ui {
     class MainWindow;
@@ -19,6 +20,9 @@ public:
 public:
     void SetTableRow(int row_nr, QTableWidgetItem row[], QString name, QString value);
     double zvalue;
+    bool dragVal;
+    bool windowVal;
+
 
 public slots:
     void Open();
@@ -31,9 +35,16 @@ public slots:
     void zoomChanged_p25();
     void zoomChanged_m25();
     void zoomChanged_100();
+    void rotateRight();
+    void rotateLeft();
+    void setDrag();
+    void setWindowing();
 
 protected:
     void changeEvent(QEvent *e);
+    virtual void mousePressEvent(QMouseEvent* event);
+    virtual void mouseReleaseEvent(QMouseEvent* event);
+    virtual void mouseMoveEvent(QMouseEvent* event);
 
 private:
     Ui::MainWindow *ui;
