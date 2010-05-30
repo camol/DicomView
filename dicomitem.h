@@ -77,10 +77,16 @@ public:
     std::string fst_ins_uid() { return Study_Instance_UID.str(); }
     std::string fsop_cl_uid() { return SOP_Class_UID.str(); }
     std::string fsop_ins_uid() { return SOP_Instance_UID.str(); }
-
-
-
-
+    std::string fref_phys_name() { return Refering_Physician_Name; }
+    std::string fchar_set() { return Character_Set; }
+    std::string finst_name() { return Institution_Name; }
+    std::string finst_adr() { return Institution_Address; }
+    std::string fPPS_s_d() { return PPS_Start_Date; }
+    std::string freq_phy() { return Request_Physician; }
+    std::string freq_pro_desc() { return  Request_Procedure_Description; }
+    std::string fPPS_ID() { return PPS_ID; }
+    std::string fPPS_s_t() { return PPS_Start_Time; }
+    std::string fPPS_desc() { return PPS_Description; }
 
 private:
     std::string Img_Type;
@@ -98,14 +104,29 @@ private:
     std::string Accession_Number;
     std::string Modality;
     std::string Manufacturer;
-    dicom::UID Institution_Name;
-
+    std::string Institution_Name;
+    std::string Institution_Address;
+    dicom::UID Referenced_Study_Sequence;
     std::string Station_Name;
     std::string Study_Description;
     std::string Series_Description;
-    dicom::UID Performing_Physicians_Name;
+    //std::string Performing_Physicians_Name;
+    std::string Character_Set;
     UINT16 Operators_Name;
     std::string Manufacturers_Model_Name;
+    //dicom::UID Body_Part_Examined;
+    //int Body_Part_Thickness;
+    //dicom::UID KVP;
+    //std::string Protocol_Name;
+    std::string Request_Physician;
+    std::string Request_Procedure_Description;
+    std::string PPS_Start_Date;
+    std::string PPS_Start_Time;
+    std::string PPS_ID;
+    std::string PPS_Description;
+    std::string Request_Attributes_Sequence;
+    //std::string SPS_Description;
+
 
     std::string Patients_Name;
     std::string Patients_Birth_Date;
@@ -143,7 +164,7 @@ private:
     //UINT16 Flip_Angle;
     //UINT16 SAR;
 
-
+    std::string Refering_Physician_Name;
     std::string Patient_Position;
     dicom::UID Study_Instance_UID;
     std::string Series_Instance_UID;

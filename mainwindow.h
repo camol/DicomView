@@ -19,7 +19,6 @@ public:
 
 public:
     void SetTableRow(int row_nr, QTableWidgetItem row[], QString name, QString value);
-    double zvalue;
     bool dragVal;
     bool windowVal;
 

@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     dicom_file(0)
 {
     ui->setupUi(this);
-    zvalue=1;
+
     dragVal = true;
     windowVal = false;
     QObject::connect(ui->actionOpen,SIGNAL(triggered()),this,SLOT(Open()));
@@ -61,9 +61,7 @@ void MainWindow::Open()
         /****************START*******************************************/
 
         ui->graphicsView->scene()->clear();
-        UINT16 winCenter;
-        UINT16 winWidth;
-        bool ok;
+
         std::vector<int> min(dicom_file->min());
         std::vector<int> max(dicom_file->max());
         dicom_file->setWindowMin(min[0]);
@@ -78,7 +76,7 @@ void MainWindow::Open()
 
         /***************TAGS DISPLAY***********************************/
         /****************START*******************************************/
-        QTableWidgetItem *row = new QTableWidgetItem[88];
+        QTableWidgetItem *row = new QTableWidgetItem[110];
 
         SetTableRow(0, row, "Image Type", QString::fromStdString(dicom_file->fimg_type()));
         SetTableRow(1, row, "Study Date", QString::fromStdString(dicom_file->fst_date()));
@@ -122,6 +120,17 @@ void MainWindow::Open()
         SetTableRow(39, row, "Study Instance UID", QString::fromStdString(dicom_file->fst_ins_uid()));
         SetTableRow(40, row, "SOP Class UID", QString::fromStdString(dicom_file->fsop_cl_uid()));
         SetTableRow(41, row, "SOP Instance UID", QString::fromStdString(dicom_file->fsop_ins_uid()));
+        SetTableRow(42, row, "Refering Physician Name", QString::fromStdString(dicom_file->fref_phys_name()));
+        SetTableRow(43, row, "Character Set", QString::fromStdString(dicom_file->fchar_set()));
+        SetTableRow(44, row, "Institution Name", QString::fromStdString(dicom_file->finst_name()));
+        SetTableRow(45, row, "Institution Address", QString::fromStdString(dicom_file->finst_adr()));
+        SetTableRow(46, row, "Requesting Physician", QString::fromStdString(dicom_file->freq_phy()));
+        SetTableRow(47, row, "Requested Procedure Description", QString::fromStdString(dicom_file->freq_pro_desc()));
+        SetTableRow(48, row, "PPS Start Date", QString::fromStdString(dicom_file->fPPS_s_d()));
+        SetTableRow(49, row, "PPS Start Time", QString::fromStdString(dicom_file->fPPS_s_t()));
+        SetTableRow(50, row, "PPS ID", QString::fromStdString(dicom_file->fPPS_ID()));
+        SetTableRow(51, row, "PPS Description", QString::fromStdString(dicom_file->fPPS_desc()));
+
 
         /***************TAGS DISPLAY***********************************/
         /****************END************************************************/
@@ -179,8 +188,7 @@ void MainWindow::zoomChanged_p25()
 {
     if (dicom_file)
     {
-        zvalue=zvalue+0.25;
-        ui->graphicsView->setTransform(QTransform::fromScale(zvalue,zvalue));
+        ui->graphicsView->scale(1.25,1.25);
     }
 }
 
@@ -188,20 +196,18 @@ void MainWindow::zoomChanged_m25()
 {
     if (dicom_file)
     {
-        if(zvalue!=0)
-        {
-            zvalue=zvalue-0.25;
-            ui->graphicsView->setTransform(QTransform::fromScale(zvalue,zvalue));
-        }
+
+        ui->graphicsView->scale(1.0/1.25,1.0/1.25);
+
     }
 }
+
 
 void MainWindow::zoomChanged_100()
 {
     if (dicom_file)
     {
-        zvalue=1;
-        ui->graphicsView->setTransform(QTransform::fromScale(zvalue,zvalue));
+        ui->graphicsView->scale(1,1);
     }
 }
 

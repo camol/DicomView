@@ -6,6 +6,7 @@ DicomItem::DicomItem(const dicom::DataSet &dset):
     dset(dicom::TAG_IMAGE_TYPE) >> Img_Type;
     dset(dicom::TAG_SOP_CLASS_UID) >> SOP_Class_UID;
     dset(dicom::TAG_SOP_INST_UID ) >> SOP_Instance_UID;
+
     dset(dicom::TAG_STUDY_DATE ) >> Study_Date;
     dset(dicom::TAG_SERIES_DATE ) >> Series_Date;
     dset(dicom::TAG_ACQUISITION_DATE ) >> Acquisition_Date;
@@ -14,15 +15,17 @@ DicomItem::DicomItem(const dicom::DataSet &dset):
     dset(dicom::TAG_SERIES_TIME ) >> Series_Time;
     dset(dicom::TAG_ACQUISITION_TIME ) >> Acquisition_Time;
     dset(dicom::TAG_SERIES_TIME ) >> Content_Time;
-    dset(dicom::TAG_SERIES_TIME ) >> Accession_Number;
+
     dset(dicom::TAG_MODALITY  ) >> Modality;
     dset(dicom::TAG_MANUFACTOR ) >> Manufacturer;
-    //dset(dicom::TAG_INSTITUT_DEPT_NAME ) >> Institution_Name;
+    dset(dicom::TAG_INSTITUT_NAME ) >> Institution_Name;
+    dset(dicom::TAG_INSTITUT_ADDRESS ) >> Institution_Address;
     dset(dicom::TAG_STUDY_DESC ) >> Study_Description;
     dset(dicom::TAG_STATION_NAME ) >> Station_Name;
     dset(dicom::TAG_SERIES_DESC ) >> Series_Description;
-    //dset(dicom::TAG_PERF_PHYS_NAME ) >> Performing_Physicians_Name;
+    //dset(dicom::TAG_SPS_PERF_PHYS_NAME ) >> Performing_Physicians_Name;
     //dset(dicom::TAG_OPERATOR_NAME ) >> Operators_Name; brak typu
+    dset(dicom::TAG_REF_PHYS_NAME ) >> Refering_Physician_Name;
     dset(dicom::TAG_MANFAC_MODEL_NAME ) >> Manufacturers_Model_Name;
     dset(dicom::TAG_PAT_NAME ) >> Patients_Name;
     dset(dicom::TAG_PAT_BIRTH_DATE ) >> Patients_Birth_Date;
@@ -59,8 +62,27 @@ DicomItem::DicomItem(const dicom::DataSet &dset):
 
     dset(dicom::TAG_BITS_ALLOC ) >> Bits_Allocated;
     dset(dicom::TAG_BITS_STORED ) >> Bits_Stored;
-
     dset(dicom::TAG_HIGH_BIT ) >> High_Bit;
+
+    dset(dicom::TAG_CHAR_SET ) >> Character_Set;
+    //dset(dicom::TAG_REF_STUDY_SEQ ) >> Referenced_Study_Sequence;
+
+    //dset(dicom::TAG_BODY_PART_EXAMINED ) >> Body_Part_Examined;
+    //dset(dicom::TAG_BODY_PART_THICKNESS ) >> Body_Part_Thickness;
+    //dset(dicom::TAG_KVP ) >> KVP;
+    //dset(dicom::TAG_PROT_NAME ) >> Protocol_Name;
+    //dicom::GetName(dicom::TAG_PROT_NAME)=Protocol_Name;
+    //dset(dicom::TAG_DIST_SOURCE_PATIENT ) >> DistanceSP;
+    dset(dicom::TAG_REQ_PHYS ) >> Request_Physician;
+    dset(dicom::TAG_REQ_PROC_DESC ) >> Request_Procedure_Description;
+    //dset(dicom::TAG_CODE_VALUE ) >> Code_Value;
+    dset(dicom::TAG_PPS_START_DATE ) >> PPS_Start_Date;
+    dset(dicom::TAG_PPS_START_TIME ) >> PPS_Start_Time;
+    dset(dicom::TAG_PPS_ID ) >> PPS_ID;
+    dset(dicom::TAG_PPS_DESC ) >> PPS_Description;
+    //dset(dicom::TAG_REQ_ATTRIB_SEQ ) >> Request_Attributes_Sequence;
+    //dset(dicom::TAG_SPS_DESC ) >> SPS_Description;
+
 }
 
 QImage DicomItem::toImage() const

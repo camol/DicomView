@@ -105,7 +105,7 @@ void MyGraphicsView::mouseMoveEvent(QMouseEvent* event) {
         diffX = LastPanPoint.x() - event->pos().x();
         diffY = LastPanPoint.y() - event->pos().y();
         QCoreApplication::sendEvent(parentWidget(), event);
-        //LastPanPoint = event->pos();
+        LastPanPoint = event->pos();
 
         //Update the center ie. do the pan
         //SetCenter(GetCenter() + delta);

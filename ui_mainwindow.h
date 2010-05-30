@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu 27. May 23:00:13 2010
+** Created: Sun 30. May 21:38:14 2010
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -65,6 +65,7 @@ public:
     QLabel *label2;
     QLabel *label3;
     QLabel *label4;
+    QLabel *labelzoom;
     QWidget *tab_tags;
     QHBoxLayout *horizontalLayout;
     QTableWidget *tableWidget;
@@ -405,6 +406,17 @@ public:
         palette8.setBrush(QPalette::Disabled, QPalette::WindowText, brush5);
         palette8.setBrush(QPalette::Disabled, QPalette::Text, brush5);
         label4->setPalette(palette8);
+        labelzoom = new QLabel(tab_img);
+        labelzoom->setObjectName(QString::fromUtf8("labelzoom"));
+        labelzoom->setGeometry(QRect(50, 292, 81, 31));
+        QPalette palette9;
+        palette9.setBrush(QPalette::Active, QPalette::WindowText, brush1);
+        palette9.setBrush(QPalette::Active, QPalette::Text, brush1);
+        palette9.setBrush(QPalette::Inactive, QPalette::WindowText, brush1);
+        palette9.setBrush(QPalette::Inactive, QPalette::Text, brush1);
+        palette9.setBrush(QPalette::Disabled, QPalette::WindowText, brush5);
+        palette9.setBrush(QPalette::Disabled, QPalette::Text, brush5);
+        labelzoom->setPalette(palette9);
         tabWidget->addTab(tab_img, QString());
         tab_tags = new QWidget();
         tab_tags->setObjectName(QString::fromUtf8("tab_tags"));
@@ -544,6 +556,7 @@ public:
         label2->setText(QString());
         label3->setText(QString());
         label4->setText(QString());
+        labelzoom->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_img), QApplication::translate("MainWindow", "Image", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Tag Name", 0, QApplication::UnicodeUTF8));
