@@ -36,7 +36,7 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_img">
      <attribute name="title">
@@ -2084,7 +2084,7 @@
          <enum>Qt::ElideMiddle</enum>
         </property>
         <property name="columnCount">
-         <number>2</number>
+         <number>3</number>
         </property>
         <attribute name="horizontalHeaderCascadingSectionResizes">
          <bool>false</bool>
@@ -2140,6 +2140,21 @@
         <column>
          <property name="text">
           <string>Value</string>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Group:Element</string>
          </property>
          <property name="font">
           <font>
@@ -2244,6 +2259,8 @@
     <addaction name="menuPresets"/>
     <addaction name="menuZoom"/>
     <addaction name="menuRotate"/>
+    <addaction name="separator"/>
+    <addaction name="actionCopy_to_Clipboard"/>
    </widget>
    <widget class="QMenu" name="menuCursor">
     <property name="title">
@@ -2389,6 +2406,11 @@
    </property>
    <property name="text">
     <string>Manual Windowing</string>
+   </property>
+  </action>
+  <action name="actionCopy_to_Clipboard">
+   <property name="text">
+    <string>Copy to Clipboard</string>
    </property>
   </action>
  </widget>

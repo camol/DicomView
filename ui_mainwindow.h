@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sun 30. May 21:38:14 2010
+** Created: Tue 1. Jun 01:40:15 2010
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -53,6 +53,7 @@ public:
     QAction *bWindowing;
     QAction *actionDrag;
     QAction *actionManual_Windowing;
+    QAction *actionCopy_to_Clipboard;
     QWidget *centralWidget;
     QTabWidget *tabWidget;
     QWidget *tab_img;
@@ -65,7 +66,6 @@ public:
     QLabel *label2;
     QLabel *label3;
     QLabel *label4;
-    QLabel *labelzoom;
     QWidget *tab_tags;
     QHBoxLayout *horizontalLayout;
     QTableWidget *tableWidget;
@@ -130,6 +130,8 @@ public:
         actionManual_Windowing = new QAction(MainWindow);
         actionManual_Windowing->setObjectName(QString::fromUtf8("actionManual_Windowing"));
         actionManual_Windowing->setCheckable(true);
+        actionCopy_to_Clipboard = new QAction(MainWindow);
+        actionCopy_to_Clipboard->setObjectName(QString::fromUtf8("actionCopy_to_Clipboard"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
@@ -406,17 +408,6 @@ public:
         palette8.setBrush(QPalette::Disabled, QPalette::WindowText, brush5);
         palette8.setBrush(QPalette::Disabled, QPalette::Text, brush5);
         label4->setPalette(palette8);
-        labelzoom = new QLabel(tab_img);
-        labelzoom->setObjectName(QString::fromUtf8("labelzoom"));
-        labelzoom->setGeometry(QRect(50, 292, 81, 31));
-        QPalette palette9;
-        palette9.setBrush(QPalette::Active, QPalette::WindowText, brush1);
-        palette9.setBrush(QPalette::Active, QPalette::Text, brush1);
-        palette9.setBrush(QPalette::Inactive, QPalette::WindowText, brush1);
-        palette9.setBrush(QPalette::Inactive, QPalette::Text, brush1);
-        palette9.setBrush(QPalette::Disabled, QPalette::WindowText, brush5);
-        palette9.setBrush(QPalette::Disabled, QPalette::Text, brush5);
-        labelzoom->setPalette(palette9);
         tabWidget->addTab(tab_img, QString());
         tab_tags = new QWidget();
         tab_tags->setObjectName(QString::fromUtf8("tab_tags"));
@@ -425,8 +416,8 @@ public:
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         tableWidget = new QTableWidget(tab_tags);
-        if (tableWidget->columnCount() < 2)
-            tableWidget->setColumnCount(2);
+        if (tableWidget->columnCount() < 3)
+            tableWidget->setColumnCount(3);
         QFont font2;
         font2.setPointSize(11);
         font2.setBold(true);
@@ -439,12 +430,16 @@ public:
         __qtablewidgetitem1->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter|Qt::AlignCenter);
         __qtablewidgetitem1->setFont(font2);
         tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        __qtablewidgetitem2->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter|Qt::AlignCenter);
+        __qtablewidgetitem2->setFont(font2);
+        tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setEnabled(true);
         tableWidget->setMinimumSize(QSize(505, 426));
         tableWidget->setBaseSize(QSize(0, 0));
         tableWidget->setTextElideMode(Qt::ElideMiddle);
-        tableWidget->setColumnCount(2);
+        tableWidget->setColumnCount(3);
         tableWidget->horizontalHeader()->setCascadingSectionResizes(false);
         tableWidget->horizontalHeader()->setDefaultSectionSize(200);
         tableWidget->verticalHeader()->setCascadingSectionResizes(false);
@@ -497,6 +492,8 @@ public:
         menuImage->addAction(menuPresets->menuAction());
         menuImage->addAction(menuZoom->menuAction());
         menuImage->addAction(menuRotate->menuAction());
+        menuImage->addSeparator();
+        menuImage->addAction(actionCopy_to_Clipboard);
         menuPresets->addAction(actionDefault);
         menuPresets->addAction(actionSkull);
         menuPresets->addAction(actionLung);
@@ -516,7 +513,7 @@ public:
         retranslateUi(MainWindow);
         QObject::connect(actionQuit_Program, SIGNAL(triggered()), MainWindow, SLOT(close()));
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -548,6 +545,7 @@ public:
         bWindowing->setText(QApplication::translate("MainWindow", "Manual Windowing", 0, QApplication::UnicodeUTF8));
         actionDrag->setText(QApplication::translate("MainWindow", "Drag", 0, QApplication::UnicodeUTF8));
         actionManual_Windowing->setText(QApplication::translate("MainWindow", "Manual Windowing", 0, QApplication::UnicodeUTF8));
+        actionCopy_to_Clipboard->setText(QApplication::translate("MainWindow", "Copy to Clipboard", 0, QApplication::UnicodeUTF8));
         lname->setText(QString());
         lmod->setText(QString());
         lseries->setText(QString());
@@ -556,12 +554,13 @@ public:
         label2->setText(QString());
         label3->setText(QString());
         label4->setText(QString());
-        labelzoom->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_img), QApplication::translate("MainWindow", "Image", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Tag Name", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
         ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Value", 0, QApplication::UnicodeUTF8));
+        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Group:Element", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_tags), QApplication::translate("MainWindow", "Tags", 0, QApplication::UnicodeUTF8));
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Dicom Browser", 0, QApplication::UnicodeUTF8));

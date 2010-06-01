@@ -3,85 +3,80 @@
 DicomItem::DicomItem(const dicom::DataSet &dset):
         iPixelData(dset(dicom::TAG_PIXEL_DATA))
 {
-    dset(dicom::TAG_IMAGE_TYPE) >> Img_Type;
-    dset(dicom::TAG_SOP_CLASS_UID) >> SOP_Class_UID;
-    dset(dicom::TAG_SOP_INST_UID ) >> SOP_Instance_UID;
+    TagCheck(dset, dicom::TAG_SERIES_INST_UID,Series_Inst_UID);
+    TagCheck(dset, dicom::TAG_IMAGE_TYPE,Img_Type);
+    TagCheck(dset, dicom::TAG_SOP_CLASS_UID,SOP_Class_UID);
+    TagCheck(dset, dicom::TAG_SOP_INST_UID,SOP_Instance_UID);
+    TagCheck(dset, dicom::TAG_STUDY_DATE,Study_Date);
+    TagCheck(dset, dicom::TAG_SERIES_DATE,Series_Date);
+    TagCheck(dset, dicom::TAG_ACQUISITION_DATE,Acquisition_Date);
+    TagCheck(dset, dicom::TAG_STUDY_TIME,Study_Time);
+    TagCheck(dset, dicom::TAG_SERIES_TIME,Series_Time);
+    TagCheck(dset, dicom::TAG_ACQUISITION_TIME,Acquisition_Time);
+    TagCheck(dset, dicom::TAG_SERIES_TIME,Content_Time);
+    TagCheck(dset, dicom::TAG_MODALITY,Modality);
+    TagCheck(dset, dicom::TAG_MANUFACTOR,Manufacturer);
+    TagCheck(dset, dicom::TAG_INSTITUT_NAME,Institution_Name);
+    TagCheck(dset, dicom::TAG_INSTITUT_ADDRESS,Institution_Address);
+    TagCheck(dset, dicom::TAG_STUDY_DESC,Study_Description);
+    TagCheck(dset, dicom::TAG_STATION_NAME,Station_Name);
+    TagCheck(dset, dicom::TAG_SERIES_DESC,Series_Description);
+    TagCheck(dset, dicom::TAG_REF_PHYS_NAME,Refering_Physician_Name);
+    TagCheck(dset, dicom::TAG_MANFAC_MODEL_NAME,Manufacturers_Model_Name);
+    TagCheck(dset, dicom::TAG_PAT_NAME,Patients_Name);
+    TagCheck(dset, dicom::TAG_PAT_BIRTH_DATE,Patients_Birth_Date);
+    TagCheck(dset, dicom::TAG_PAT_SEX,Patients_Sex);
+    TagCheck(dset, dicom::TAG_PAT_AGE,Patients_Age);
+    TagCheck(dset, dicom::TAG_PAT_WEIGHT,Patients_Weight);
+    TagCheck(dset, dicom::TAG_PAT_SEX,Patients_Sex);
+    TagCheck(dset, dicom::TAG_PAT_SEX,Patients_Sex);
+    TagCheck(dset, dicom::TAG_ADDITIONAL_PT_HISTORY,Add_Pat_History);//
+    TagCheck(dset, dicom::TAG_SPS_PERF_PHYS_NAME,SPS_Perf_Name);//
+    TagCheck(dset, dicom::TAG_OPERATOR_NAME,Operators_Name);//
+    TagCheck(dset, dicom::TAG_PAT_ID,Patient_ID);
+    TagCheck(dset, dicom::TAG_SOFTWARE_VERSION,Software_Versions);
+    TagCheck(dset, dicom::TAG_VIEW_POSITION,View_Position);//
+    TagCheck(dset, dicom::TAG_STUDY_INST_UID,Study_Instance_UID);
+    TagCheck(dset, dicom::TAG_STUDY_ID,Study_ID);
+    TagCheck(dset, dicom::TAG_SERIES_NO,Series_Number);
+    TagCheck(dset, dicom::TAG_ACQUISITION_NO,Acquisition_Number);
+    TagCheck(dset, dicom::TAG_IMAGE_POS,Image_Position_Patient);//
+    TagCheck(dset, dicom::TAG_SAMPLES_PER_PX,Samples_per_Pixel);
+    TagCheck(dset, dicom::TAG_PHOTOMETRIC,Photometric_Interpretetion);
+    TagCheck(dset, dicom::TAG_ROWS,Rows);
+    TagCheck(dset, dicom::TAG_COLUMNS,Columns);
+    TagCheck(dset, dicom::TAG_PIXEL_SPACING,Pixel_Spacing);
+    TagCheck(dset, dicom::TAG_PX_REPRESENT,Pixel_Representation);
+    TagCheck(dset, dicom::TAG_WINDOW_CENTER,Window_Center);
+    TagCheck(dset, dicom::TAG_WINDOW_WIDTH,Window_Width);
+    TagCheck(dset, dicom::TAG_RESCALE_INTERCEPT,Rescale_Intercept);
+    TagCheck(dset, dicom::TAG_RESCALE_SLOPE,Rescale_Intercept);
+    TagCheck(dset, dicom::TAG_RESCALE_TYPE,Rescale_Type);//
+    TagCheck(dset, dicom::TAG_BITS_ALLOC,Bits_Allocated);
+    TagCheck(dset, dicom::TAG_BITS_STORED,Bits_Stored);
+    TagCheck(dset, dicom::TAG_HIGH_BIT,High_Bit);
+    TagCheck(dset, dicom::TAG_CHAR_SET,Character_Set);
+    TagCheck(dset, dicom::TAG_BODY_PART_EXAMINED,Body_Part_Examined);
+    TagCheck(dset, dicom::TAG_BODY_PART_THICKNESS,Body_Part_Thickness);
+    TagCheck(dset, dicom::TAG_KVP,KVP);
+    TagCheck(dset, dicom::TAG_PROT_NAME,Protocol_Name);
+    TagCheck(dset, dicom::TAG_DIST_SOURCE_DETECTOR,DistanceSD);
+    TagCheck(dset, dicom::TAG_DIST_SOURCE_PATIENT,DistanceSP);
+    TagCheck(dset, dicom::TAG_REQ_PHYS,Request_Physician);
+    TagCheck(dset, dicom::TAG_REQ_PROC_DESC,Request_Procedure_Description);
+    TagCheck(dset, dicom::TAG_CODE_VALUE,Code_Value);
+    TagCheck(dset, dicom::TAG_PPS_START_DATE,PPS_Start_Date);
+    TagCheck(dset, dicom::TAG_PPS_START_TIME,PPS_Start_Time);
+    TagCheck(dset, dicom::TAG_PPS_ID,PPS_ID);
+    TagCheck(dset, dicom::TAG_PPS_DESC,PPS_Description);
+    TagCheck(dset, dicom::TAG_EXPOSURE_TIME,Exposure_Time);
+    TagCheck(dset, dicom::TAG_XRAYTUBE_CURRENT,X_Ray_Tube);
+    TagCheck(dset, dicom::TAG_EXPOSURE_MAS,Exposure);
+    TagCheck(dset, dicom::TAG_FILTER_TYPE,Filter_Type);
+    TagCheck(dset, dicom::TAG_FOCAL_SPOT,Focal_Spot);
+    TagCheck(dset, dicom::TAG_IMAGE_NO,Image_No);
+    TagCheck(dset, dicom::TAG_SPS_DESC,SPS_Description);//
 
-    dset(dicom::TAG_STUDY_DATE ) >> Study_Date;
-    dset(dicom::TAG_SERIES_DATE ) >> Series_Date;
-    dset(dicom::TAG_ACQUISITION_DATE ) >> Acquisition_Date;
-    //dset(dicom::TAG_SOP_INST_UID ) >> Content_Date; nie wiem ktory to TAG
-    dset(dicom::TAG_STUDY_TIME ) >> Study_Time;
-    dset(dicom::TAG_SERIES_TIME ) >> Series_Time;
-    dset(dicom::TAG_ACQUISITION_TIME ) >> Acquisition_Time;
-    dset(dicom::TAG_SERIES_TIME ) >> Content_Time;
-
-    dset(dicom::TAG_MODALITY  ) >> Modality;
-    dset(dicom::TAG_MANUFACTOR ) >> Manufacturer;
-    dset(dicom::TAG_INSTITUT_NAME ) >> Institution_Name;
-    dset(dicom::TAG_INSTITUT_ADDRESS ) >> Institution_Address;
-    dset(dicom::TAG_STUDY_DESC ) >> Study_Description;
-    dset(dicom::TAG_STATION_NAME ) >> Station_Name;
-    dset(dicom::TAG_SERIES_DESC ) >> Series_Description;
-    //dset(dicom::TAG_SPS_PERF_PHYS_NAME ) >> Performing_Physicians_Name;
-    //dset(dicom::TAG_OPERATOR_NAME ) >> Operators_Name; brak typu
-    dset(dicom::TAG_REF_PHYS_NAME ) >> Refering_Physician_Name;
-    dset(dicom::TAG_MANFAC_MODEL_NAME ) >> Manufacturers_Model_Name;
-    dset(dicom::TAG_PAT_NAME ) >> Patients_Name;
-    dset(dicom::TAG_PAT_BIRTH_DATE ) >> Patients_Birth_Date;
-    dset(dicom::TAG_PAT_SEX ) >> Patients_Sex;
-    dset(dicom::TAG_PAT_AGE ) >> Patients_Age;
-    dset(dicom::TAG_PAT_WEIGHT ) >> Patients_Weight;
-    //dset(dicom::TAG_ADDITIONAL_PT_HISTORY ) >> Additional_Patient_History; brak typu
-    dset(dicom::TAG_PAT_ID ) >> Patient_ID;
-
-    dset(dicom::TAG_SOFTWARE_VERSION ) >> Software_Versions;
-    //dset(dicom::TAG_VIEW_POSITION ) >> Patient_Position; brak typu
-    dset(dicom::TAG_STUDY_INST_UID ) >> Study_Instance_UID; //brak typu
-    dset(dicom::TAG_STUDY_ID ) >> Study_ID;
-    dset(dicom::TAG_SERIES_NO ) >> Series_Number;
-    dset(dicom::TAG_ACQUISITION_NO ) >> Acquisition_Number;
-    //dset(dicom::TAG_PATIENT_ORIENTATION ) >> Patient_Orientation;
-    //dset(dicom::TAG_IMAGE_POS  ) >> Image_Position_Patient; brak typu
-    ///////////
-    dset(dicom::TAG_IMAGE_ORIENTATION ) >> Image_Orientation_Patient;
-    dset(dicom::TAG_SAMPLES_PER_PX ) >> Samples_per_Pixel;
-    dset(dicom::TAG_PHOTOMETRIC ) >> Photometric_Interpretetion;
-    dset(dicom::TAG_ROWS ) >> Rows;
-    dset(dicom::TAG_COLUMNS ) >> Columns;
-    dset(dicom::TAG_PIXEL_SPACING ) >> Pixel_Spacing;
-
-    dset(dicom::TAG_PX_REPRESENT ) >> Pixel_Representation;
-    //dset(dicom::TAG_SMALLEST_IMG_PX_VALUE ) >> Smallest_Image_Pixel_Value; brak typu
-    //dset(dicom::TAG_LARGEST_IMG_PX_VALUE ) >> Largest_Image_Pixel_Value; brak typu
-    dset(dicom::TAG_WINDOW_CENTER ) >> Window_Center;
-    dset(dicom::TAG_WINDOW_WIDTH ) >> Window_Width;
-    dset(dicom::TAG_RESCALE_INTERCEPT ) >> Rescale_Intercept;
-    dset(dicom::TAG_RESCALE_SLOPE ) >> Rescale_Slope;
-    //dset(dicom::TAG_RESCALE_TYPE ) >> Rescale_Type; brak typu
-
-    dset(dicom::TAG_BITS_ALLOC ) >> Bits_Allocated;
-    dset(dicom::TAG_BITS_STORED ) >> Bits_Stored;
-    dset(dicom::TAG_HIGH_BIT ) >> High_Bit;
-
-    dset(dicom::TAG_CHAR_SET ) >> Character_Set;
-    //dset(dicom::TAG_REF_STUDY_SEQ ) >> Referenced_Study_Sequence;
-
-    //dset(dicom::TAG_BODY_PART_EXAMINED ) >> Body_Part_Examined;
-    //dset(dicom::TAG_BODY_PART_THICKNESS ) >> Body_Part_Thickness;
-    //dset(dicom::TAG_KVP ) >> KVP;
-    //dset(dicom::TAG_PROT_NAME ) >> Protocol_Name;
-    //dicom::GetName(dicom::TAG_PROT_NAME)=Protocol_Name;
-    //dset(dicom::TAG_DIST_SOURCE_PATIENT ) >> DistanceSP;
-    dset(dicom::TAG_REQ_PHYS ) >> Request_Physician;
-    dset(dicom::TAG_REQ_PROC_DESC ) >> Request_Procedure_Description;
-    //dset(dicom::TAG_CODE_VALUE ) >> Code_Value;
-    dset(dicom::TAG_PPS_START_DATE ) >> PPS_Start_Date;
-    dset(dicom::TAG_PPS_START_TIME ) >> PPS_Start_Time;
-    dset(dicom::TAG_PPS_ID ) >> PPS_ID;
-    dset(dicom::TAG_PPS_DESC ) >> PPS_Description;
-    //dset(dicom::TAG_REQ_ATTRIB_SEQ ) >> Request_Attributes_Sequence;
-    //dset(dicom::TAG_SPS_DESC ) >> SPS_Description;
 
 }
 
@@ -251,4 +246,41 @@ void DicomItem::getImage(UINT8 **aImage, int aWindowMin, int aWindowMax) const
                 pInput++;
         }
 }
+
+void DicomItem::TagCheck(const dicom::DataSet &dset, dicom::Tag tag, std::string &a)
+{
+    if(dset.exists(tag))
+    {
+        dset(tag) >> a;
+    }
+    else
+    {
+        a="dupa";
+    }
+}
+
+void DicomItem::TagCheck(const dicom::DataSet &dset, dicom::Tag tag, dicom::UID &a)
+{
+    if(dset.exists(tag))
+    {
+        dset(tag) >> a;
+    }
+    else
+    {
+        a=dicom::UID::UID("");
+    }
+}
+
+void DicomItem::TagCheck(const dicom::DataSet &dset, dicom::Tag tag, UINT16 &a)
+{
+    if(dset.exists(tag))
+    {
+        dset(tag) >> a;
+    }
+    else
+    {
+        a=0;
+    }
+}
+
 

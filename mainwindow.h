@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTableWidgetItem>
 #include <QPointF>
+#include <QClipboard>
 
 namespace Ui {
     class MainWindow;
@@ -18,7 +19,7 @@ public:
     ~MainWindow();
 
 public:
-    void SetTableRow(int row_nr, QTableWidgetItem row[], QString name, QString value);
+    void SetTableRow(int row_nr, QTableWidgetItem row[], QString name, QString value, QString group);
     bool dragVal;
     bool windowVal;
 
@@ -38,6 +39,7 @@ public slots:
     void rotateLeft();
     void setDrag();
     void setWindowing();
+    void copyClip();
 
 protected:
     void changeEvent(QEvent *e);
