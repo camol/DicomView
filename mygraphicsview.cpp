@@ -99,13 +99,16 @@ void MyGraphicsView::mouseReleaseEvent(QMouseEvent* event)
 */
 void MyGraphicsView::mouseMoveEvent(QMouseEvent* event) {
     if(!LastPanPoint.isNull()) {
+
         //Get how much we panned
         //QPointF delta = mapToScene(LastPanPoint) - mapToScene(event->pos());
         EventPos=event->pos();
-        diffX = LastPanPoint.x() - event->pos().x();
-        diffY = LastPanPoint.y() - event->pos().y();
+        diffX = (LastPanPoint.x() - event->pos().x())*10;
+
+        diffY = (LastPanPoint.y() - event->pos().y())*10;
         QCoreApplication::sendEvent(parentWidget(), event);
         LastPanPoint = event->pos();
+
 
         //Update the center ie. do the pan
         //SetCenter(GetCenter() + delta);
@@ -145,6 +148,8 @@ void MyGraphicsView::wheelEvent(QWheelEvent* event) {
     QPointF newCenter = screenCenter + offset;
     SetCenter(newCenter);
 }
+
+
 
 /**
   * Need to update the center so there is no jolt in the

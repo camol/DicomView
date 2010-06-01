@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->actionCopy_to_Clipboard,SIGNAL(triggered()),this,SLOT(copyClip()));
 
     ui->graphicsView->setScene(new QGraphicsScene(this));
+
     ui->graphicsView->setDragMode(MyGraphicsView::ScrollHandDrag);
 
 }
@@ -182,9 +183,10 @@ void MainWindow::Open()
         */
 
 
-        ui->lname->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fpat_name())));
-        ui->lmod->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fmod())));
-        ui->lseries->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fse_desc())));
+        ui->graphicsView->scene()->addSimpleText(QString::fromStdString(dicom_file->fpat_name()), QFont()  );
+        //ui->lname->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fpat_name())));
+        //ui->lmod->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fmod())));
+        //ui->lseries->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fse_desc())));
         //ui->ldate->setText(QString("%1 ").arg((QDate::toString ( QString::fromStdString(dicom_file->fst_date()), "yyyy.MM.dd" ))));
         //QDate date=QDate::toString("20040301","yyyyMMdd");
 
@@ -366,14 +368,16 @@ void MainWindow::mouseMoveEvent(QMouseEvent* event) {
 
         else if(windowVal)
         {
-            ui->label->setText(QString("%1 ").arg(QString::number(ui->graphicsView->diffX,10)));
+            /*ui->label->setText(QString("%1 ").arg(QString::number(ui->graphicsView->diffX,10)));
             ui->label2->setText(QString("%1 ").arg(QString::number(ui->graphicsView->diffY,10)));
+            ui->label10->setText(QString("%1 ").arg(QString::number(ui->graphicsView->temp_diffX,10)));*/
 
             dicom_file->setWindowMin(dicom_file->CurrentWindowMin() + ui->graphicsView->diffX);
             dicom_file->setWindowMax(dicom_file->CurrentWindowMax() + ui->graphicsView->diffY);
 
-            ui->label3->setText(QString("%1 ").arg(QString::number(dicom_file->CurrentWindowMin(),10)));
-            ui->label4->setText(QString("%1 ").arg(QString::number(dicom_file->CurrentWindowMax(),10)));
+            //ui->label3->setText(QString("%1 ").arg(QString::number(dicom_file->CurrentWindowMin(),10)));
+            //ui->label4->setText(QString("%1 ").arg(QString::number(dicom_file->CurrentWindowMax(),10)));
+
             ui->graphicsView->scene()->clear();
             ui->graphicsView->scene()->addPixmap(dicom_file->toPixmap());
         }

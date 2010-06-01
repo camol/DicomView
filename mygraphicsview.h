@@ -11,6 +11,8 @@ public:
     MyGraphicsView(QWidget* parent = NULL);
     int diffX;
     int diffY;
+    int temp_diffX;
+
 
 public:
     //Holds the current centerpoint for the view, used for panning and zooming
@@ -25,6 +27,7 @@ public:
     QPointF GetCenter() { return CurrentCenterPoint; }
 
     //Take over the interaction
+
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseReleaseEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);
