@@ -10,22 +10,13 @@
 #include <QWheelEvent>
 #include <QDebug>
 #include <QCoreApplication>
-/**
-* Sets up the subclassed QGraphicsView
-*/
+
 MyGraphicsView::MyGraphicsView(QWidget* parent) : QGraphicsView(parent)
 {
     diffX=0;
     hasMouseTracking();
 }
 
-/**
-  * Sets the current centerpoint.  Also updates the scene's center point.
-  * Unlike centerOn, which has no way of getting the floating point center
-  * back, SetCenter() stores the center point.  It also handles the special
-  * sidebar case.  This function will claim the centerPoint to sceneRec ie.
-  * the centerPoint must be within the sceneRec.
-  */
 
 void MyGraphicsView::SetCenter(const QPointF& centerPoint) {
     //Get the rectangle of the visible area in scene coords
@@ -74,52 +65,37 @@ void MyGraphicsView::SetCenter(const QPointF& centerPoint) {
     centerOn(CurrentCenterPoint);
 }
 
-/**
-  * Handles when the mouse button is pressed
-  */
+
 void MyGraphicsView::mousePressEvent(QMouseEvent* event)
 {
-    QCoreApplication::sendEvent(parentWidget(), event);
     setCursor(Qt::ClosedHandCursor);
+    QCoreApplication::sendEvent(parentWidget(), event);
     LastPanPoint = event->pos();
  }
 
-/**
-  * Handles when the mouse button is released
-  */
+
 void MyGraphicsView::mouseReleaseEvent(QMouseEvent* event)
 {
-    QCoreApplication::sendEvent(parentWidget(), event);
     setCursor(Qt::OpenHandCursor);
+    QCoreApplication::sendEvent(parentWidget(), event);
     LastPanPoint = QPoint();
 }
 
-/**
-*Handles the mouse move event
-*/
+
 void MyGraphicsView::mouseMoveEvent(QMouseEvent* event) {
     if(!LastPanPoint.isNull()) {
 
-        //Get how much we panned
-        //QPointF delta = mapToScene(LastPanPoint) - mapToScene(event->pos());
         EventPos=event->pos();
-        diffX = (LastPanPoint.x() - event->pos().x())*10;
+        
+        diffX = (LastPanPoint.x() - event->pos().x());
 
-        diffY = (LastPanPoint.y() - event->pos().y())*10;
+        diffY = (LastPanPoint.y() - event->pos().y());
         QCoreApplication::sendEvent(parentWidget(), event);
         LastPanPoint = event->pos();
-
-
-        //Update the center ie. do the pan
-        //SetCenter(GetCenter() + delta);
-
 
     }
 }
 
-/**
-  * Zoom the view in and out.
-  */
 void MyGraphicsView::wheelEvent(QWheelEvent* event) {
 
     //Get the position of the mouse before scaling, in scene coords
@@ -149,17 +125,3 @@ void MyGraphicsView::wheelEvent(QWheelEvent* event) {
     SetCenter(newCenter);
 }
 
-
-
-/**
-  * Need to update the center so there is no jolt in the
-  * interaction after resizing the widget.
-  */
-/*void MyGraphicsView::resizeEvent(QResizeEvent* event) {
-    //Get the rectangle of the visible area in scene coords
-    QRectF visibleArea = mapToScene(rect()).boundingRect();
-    SetCenter(visibleArea.center());
-
-    //Call the subclass resize so the scrollbars are updated correctly
-    QGraphicsView::resizeEvent(event);
-}*/

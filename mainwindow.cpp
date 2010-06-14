@@ -73,7 +73,7 @@ void MainWindow::Open()
         ui->graphicsView->setSceneRect(0, 0, dicom_file->fcolumns(), dicom_file->frows());
 
         /***************IMAGE DISPLAY***********************************/
-        /****************START*******************************************/
+        /****************END*******************************************/
 
 
         /***************TAGS DISPLAY***********************************/
@@ -183,7 +183,7 @@ void MainWindow::Open()
         */
 
 
-        ui->graphicsView->scene()->addSimpleText(QString::fromStdString(dicom_file->fpat_name()), QFont()  );
+        //ui->graphicsView->scene()->addSimpleText(QString::fromStdString(dicom_file->fpat_name()), QFont()  );
         //ui->lname->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fpat_name())));
         //ui->lmod->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fmod())));
         //ui->lseries->setText(QString("%1 ").arg(QString::fromStdString(dicom_file->fse_desc())));
@@ -202,7 +202,12 @@ void MainWindow::copyClip()
 
 void MainWindow::setDrag()
 {
-    if(ui->actionManual_Windowing->isChecked() == true)
+    if(dragVal == true)
+    {
+        ui->actionDrag->setChecked(true);
+    }
+
+    else if(ui->actionManual_Windowing->isChecked() == true)
     {
         ui->actionManual_Windowing->setChecked(false);
         ui->actionDrag->setChecked(true);
@@ -213,7 +218,12 @@ void MainWindow::setDrag()
 
 void MainWindow::setWindowing()
 {
-    if(ui->actionDrag->isChecked() == true)
+    if(windowVal == true)
+    {
+        ui->actionManual_Windowing->setChecked(true);
+    }
+
+    else if(ui->actionDrag->isChecked() == true)
     {
         ui->actionDrag->setChecked(false);
         ui->actionManual_Windowing->setChecked(true);
@@ -349,12 +359,12 @@ void MainWindow::PresSpine()
 
 void MainWindow::mousePressEvent(QMouseEvent* event)
 {
-    setCursor(Qt::ClosedHandCursor);
+    //setCursor(Qt::ClosedHandCursor);
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent* event)
 {
-    setCursor(Qt::OpenHandCursor);
+    //setCursor(Qt::OpenHandCursor);
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent* event) {
@@ -368,15 +378,9 @@ void MainWindow::mouseMoveEvent(QMouseEvent* event) {
 
         else if(windowVal)
         {
-            /*ui->label->setText(QString("%1 ").arg(QString::number(ui->graphicsView->diffX,10)));
-            ui->label2->setText(QString("%1 ").arg(QString::number(ui->graphicsView->diffY,10)));
-            ui->label10->setText(QString("%1 ").arg(QString::number(ui->graphicsView->temp_diffX,10)));*/
 
-            dicom_file->setWindowMin(dicom_file->CurrentWindowMin() + ui->graphicsView->diffX);
+            dicom_file->setWindowMin(dicom_file->CurrentWindowMin() + ui->graphicsView->diffX );
             dicom_file->setWindowMax(dicom_file->CurrentWindowMax() + ui->graphicsView->diffY);
-
-            //ui->label3->setText(QString("%1 ").arg(QString::number(dicom_file->CurrentWindowMin(),10)));
-            //ui->label4->setText(QString("%1 ").arg(QString::number(dicom_file->CurrentWindowMax(),10)));
 
             ui->graphicsView->scene()->clear();
             ui->graphicsView->scene()->addPixmap(dicom_file->toPixmap());

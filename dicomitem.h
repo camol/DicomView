@@ -8,21 +8,123 @@
 #include <QPixmap>
 
 
+/**
+* @page DicomItem Class DicomItem.
+* Class witch provides keeps and provides vital date from DICOM files.
+*/
+
 class DicomItem
 {
-public:
-    DicomItem(const dicom::DataSet &dset);
 
 public:
+
+    /**
+    * Constructor for DicomItem Class.
+    * @param const dicom::DataSet &dset
+    */
+
+    DicomItem(const dicom::DataSet &dset);
+
+    /**
+    * During the creation of new DicomItem element it gathers the date from the original file
+    * and stores them to variables of the class.
+    */
+
+public:
+
+    /**
+    * getImage.
+    * @param UINT8
+    * @param int
+    * @param int
+    * @return void
+    */
         void getImage(UINT8 **aImage, int aWindowMin = 0, int aWindowMax = 0) const;
+
+        /**
+        * Method which defines a picture thanks to informations from DICOM tags stored in variables: Samples_per_Pixel, Columns, Rows
+        * in class DicomItem.
+        */
+
+
+        /**
+        * setWindowMin.
+        * @param int
+        * @return void
+        */
         void setWindowMin(int aMin) { iWindowMin = aMin; }
+
+
+        /**
+        * setWindowMax.
+        * @param int
+        * @return void
+        */
         void setWindowMax(int aMax) { iWindowMax = aMax; }
+
+        /**
+        * CurrentWindowMin.
+        * @param void
+        * @return int
+        */
         int CurrentWindowMin() { return iWindowMin; }
+
+        /**
+        * CurrentWindowMax.
+        * @param void
+        * @return int
+        */
         int CurrentWindowMax() { return iWindowMax; }
+
+        /**
+        * toImage.
+        * @param void
+        * @return QImage
+        */
+
         QImage toImage() const;
+
+        /**
+        * Method which creates and returns image information in object QImage
+        */
+
+
+        /**
+        * toPixmap.
+        * @param void
+        * @return QPixmap
+        */
+
         QPixmap toPixmap() const;
+
+        /**
+        * Method which translates QImage and returns a QPixmap object
+        */
+
+
+        /**
+        * min.
+        * @param void
+        * @return std::vector<int>
+        */
+
         std::vector<int> min() const;
+
+        /**
+        * Method setting the minimum of window level
+        */
+
+        /**
+        * max.
+        * @param void
+        * @return std::vector<int>
+        */
+
         std::vector<int> max() const;
+
+        /**
+        * Method setting the maximum of window level
+        */
 
     private:
             dicom::Value iPixelData;
@@ -101,7 +203,7 @@ public:
     std::string ff_spot() { return Focal_Spot; }
     std::string fimg_no() { return Image_No; }
     std::string fimg_or() { return Image_Orientation; }
-    std::string fc_v() { return Image_Orientation; }
+    std::string fc_v() { return Code_Value; }
     std::string fsps_p_name() {SPS_Perf_Name;}
     std::string fope_name() {Operators_Name;}
 private:
@@ -194,11 +296,46 @@ private:
 
     public:
 
+    /**
+    * TagCheck.
+    * @param const dicom::DataSet
+    * @param dicom::Tag
+    * @param std::string
+    * @return void
+    */
     void TagCheck(const dicom::DataSet &dset, dicom::Tag tag, std::string &a);
+
+    /**
+    * Method which checks if the given Tag exists in opened DICOM file
+    */
+
+    /**
+    * TagCheck.
+    * @param const dicom::DataSet
+    * @param dicom::Tag
+    * @param std::UID
+    * @return void
+    */
+
     void TagCheck(const dicom::DataSet &dset, dicom::Tag tag, dicom::UID &a);
+
+    /**
+    * Method which checks if the given Tag exists in opened DICOM file
+    */
+
+    /**
+    * TagCheck.
+    * @param const dicom::DataSet
+    * @param dicom::Tag
+    * @param std::UID
+    * @return void
+    */
+
     void TagCheck(const dicom::DataSet &dset, dicom::Tag tag, UINT16 &a);
 
-
+    /**
+    * Method which checks if the given Tag exists in opened DICOM file
+    */
 
 };
 

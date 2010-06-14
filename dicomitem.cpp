@@ -1,5 +1,7 @@
 #include "dicomitem.h"
 
+
+
 DicomItem::DicomItem(const dicom::DataSet &dset):
         iPixelData(dset(dicom::TAG_PIXEL_DATA))
 {
@@ -13,7 +15,7 @@ DicomItem::DicomItem(const dicom::DataSet &dset):
     TagCheck(dset, dicom::TAG_STUDY_TIME,Study_Time);
     TagCheck(dset, dicom::TAG_SERIES_TIME,Series_Time);
     TagCheck(dset, dicom::TAG_ACQUISITION_TIME,Acquisition_Time);
-    TagCheck(dset, dicom::TAG_SERIES_TIME,Content_Time);
+    TagCheck(dset, dicom::TAG_ACQUISITION_TIME,Content_Time);
     TagCheck(dset, dicom::TAG_MODALITY,Modality);
     TagCheck(dset, dicom::TAG_MANUFACTOR,Manufacturer);
     TagCheck(dset, dicom::TAG_INSTITUT_NAME,Institution_Name);
@@ -75,11 +77,15 @@ DicomItem::DicomItem(const dicom::DataSet &dset):
     TagCheck(dset, dicom::TAG_FILTER_TYPE,Filter_Type);
     TagCheck(dset, dicom::TAG_FOCAL_SPOT,Focal_Spot);
     TagCheck(dset, dicom::TAG_IMAGE_NO,Image_No);
+    TagCheck(dset, dicom::TAG_IMAGE_ORIENTATION,Image_Orientation);
     TagCheck(dset, dicom::TAG_SPS_DESC,SPS_Description);//
 
 
 }
 
+/**
+* DicomItem Class DicomItem.
+*/
 QImage DicomItem::toImage() const
 {
         if (Samples_per_Pixel == 1)
@@ -255,7 +261,7 @@ void DicomItem::TagCheck(const dicom::DataSet &dset, dicom::Tag tag, std::string
     }
     else
     {
-        a="dupa";
+        a="";
     }
 }
 
