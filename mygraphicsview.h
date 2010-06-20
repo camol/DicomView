@@ -15,13 +15,12 @@ class MyGraphicsView : public QGraphicsView
 public:
 
     /**
-    * Constructor for MyGraphicsView Class.
+    * Constructor for MyGraphicsView Class.@n
+    * Sets the QGraphcsView constructor.
     * @param QWidget*
     */
     MyGraphicsView(QWidget* parent = NULL);
-   /**
-    * Sets the QGraphcsView constructor.
-    */
+
 
     /**
     * Variable containing the difference between two points in X axis during mouse move.
@@ -44,18 +43,16 @@ public:
 
 
     /**
-    * SetCenter.
+    * Sets the current centerpoint.  Also updates the scene's center point.
+    * Unlike centerOn, which has no way of getting the floating point center
+    * back, SetCenter() stores the center point.  It also handles the special
+    * sidebar case.  This function will claim the centerPoint to sceneRec ie.
+    * the centerPoint must be within the sceneRec.
     * @param const QPointF&
     * @return void
     */
     void SetCenter(const QPointF& centerPoint);
-    /**
-      * Sets the current centerpoint.  Also updates the scene's center point.
-      * Unlike centerOn, which has no way of getting the floating point center
-      * back, SetCenter() stores the center point.  It also handles the special
-      * sidebar case.  This function will claim the centerPoint to sceneRec ie.
-      * the centerPoint must be within the sceneRec.
-      */
+
 
     QPointF GetCenter() { return CurrentCenterPoint; }
 
@@ -63,44 +60,35 @@ public:
 
 
     /**
-    * mousePressEvent.
+    * Handles when the mouse button is pressed
     * @param QMouseEvent*
     * @return void
     */
     virtual void mousePressEvent(QMouseEvent* event);
-    /**
-      * Handles when the mouse button is pressed
-      */
+
 
     /**
-    * mouseReleaseEvent.
+    * Handles when the mouse button is released
     * @param QMouseEvent*
     * @return void
     */
     virtual void mouseReleaseEvent(QMouseEvent* event);
-    /**
-      * Handles when the mouse button is released
-      */
+
 
     /**
-    * mouseMoveEvent.
+    * Handles when the mouse is moved and stores iformations about movement in diffX and diffY.
     * @param QMouseEvent*
     * @return void
     */
     virtual void mouseMoveEvent(QMouseEvent* event);
-    /**
-      * Handles when the mouse is moved and stores iformations about movement in diffX and diffY.
-      */
 
     /**
-    * wheelEvent.
+    * Zoom the view in and out.
     * @param QMouseEvent*
     * @return void
     */
     virtual void wheelEvent(QWheelEvent* event);
-    /**
-      * Zoom the view in and out.
-      */
+
 };
 
 #endif // MYGRAPHICSVIEW_H

@@ -5,6 +5,7 @@
 #include <QTableWidgetItem>
 #include <QPointF>
 #include <QClipboard>
+#include <QDirModel>
 
 namespace Ui {
     class MainWindow;
@@ -44,18 +45,36 @@ public:
     bool dragVal;
     bool windowVal;
 
+    QDirModel *model;
+
 
 public slots:
 
+
+
     /**
-    * Open.
+    * Method which displays the Help Box.
+    * @param void
+    * @return void
+    */
+    void Help();
+
+
+    /**
+    * Method which displays the About Box.
+    * @param void
+    * @return void
+    */
+    void About();
+
+
+
+    /**
+    * Method that opens the choosen DICOM file and displays the picture and Tags using methods from DicomItem Class.
     * @param void
     * @return void
     */
     void Open();
-    /**
-    * Method that opens the choosen DICOM file and displays the picture and Tags using methods from DicomItem Class.
-    */
 
 
     /**
@@ -148,6 +167,10 @@ protected:
 private:
     Ui::MainWindow *ui;
     DicomItem *dicom_file;
+
+private slots:
+    void on_treeView_clicked(QModelIndex index);
+    void on_actionOpen_Folder_triggered();
 };
 
 #endif // MAINWINDOW_H

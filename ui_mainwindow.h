@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue 1. Jun 23:34:49 2010
+** Created: Sun 20. Jun 11:23:30 2010
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -9,7 +9,7 @@
 
 #ifndef UI_MAINWINDOW_H
 #define UI_MAINWINDOW_H
-#include "MyGraphicsView.h"
+
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
@@ -26,8 +26,9 @@
 #include <QtGui/QTabWidget>
 #include <QtGui/QTableWidget>
 #include <QtGui/QToolBar>
-#include <QtGui/QTreeWidget>
+#include <QtGui/QTreeView>
 #include <QtGui/QWidget>
+#include "MyGraphicsView.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -53,6 +54,9 @@ public:
     QAction *actionDrag;
     QAction *actionManual_Windowing;
     QAction *actionCopy_to_Clipboard;
+    QAction *actionOpen_Folder;
+    QAction *actionHelp;
+    QAction *actionAbout_DicomView;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QFrame *line;
@@ -63,7 +67,7 @@ public:
     QWidget *tab_tags;
     QHBoxLayout *horizontalLayout;
     QTableWidget *tableWidget;
-    QTreeWidget *treeWidget;
+    QTreeView *treeView;
     QMenuBar *menuBar;
     QMenu *menuOpen;
     QMenu *menuImage;
@@ -71,6 +75,7 @@ public:
     QMenu *menuZoom;
     QMenu *menuRotate;
     QMenu *menuCursor;
+    QMenu *menuHelp;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -125,6 +130,12 @@ public:
         actionManual_Windowing->setCheckable(true);
         actionCopy_to_Clipboard = new QAction(MainWindow);
         actionCopy_to_Clipboard->setObjectName(QString::fromUtf8("actionCopy_to_Clipboard"));
+        actionOpen_Folder = new QAction(MainWindow);
+        actionOpen_Folder->setObjectName(QString::fromUtf8("actionOpen_Folder"));
+        actionHelp = new QAction(MainWindow);
+        actionHelp->setObjectName(QString::fromUtf8("actionHelp"));
+        actionAbout_DicomView = new QAction(MainWindow);
+        actionAbout_DicomView->setObjectName(QString::fromUtf8("actionAbout_DicomView"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -255,12 +266,12 @@ public:
 
         gridLayout->addWidget(tabWidget, 0, 1, 2, 1);
 
-        treeWidget = new QTreeWidget(centralWidget);
-        treeWidget->setObjectName(QString::fromUtf8("treeWidget"));
-        treeWidget->setMinimumSize(QSize(214, 0));
-        treeWidget->setMaximumSize(QSize(214, 16777215));
+        treeView = new QTreeView(centralWidget);
+        treeView->setObjectName(QString::fromUtf8("treeView"));
+        treeView->setMinimumSize(QSize(214, 0));
+        treeView->setMaximumSize(QSize(214, 16777215));
 
-        gridLayout->addWidget(treeWidget, 1, 0, 1, 1);
+        gridLayout->addWidget(treeView, 1, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -278,6 +289,8 @@ public:
         menuRotate->setObjectName(QString::fromUtf8("menuRotate"));
         menuCursor = new QMenu(menuBar);
         menuCursor->setObjectName(QString::fromUtf8("menuCursor"));
+        menuHelp = new QMenu(menuBar);
+        menuHelp->setObjectName(QString::fromUtf8("menuHelp"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -289,7 +302,9 @@ public:
         menuBar->addAction(menuOpen->menuAction());
         menuBar->addAction(menuImage->menuAction());
         menuBar->addAction(menuCursor->menuAction());
+        menuBar->addAction(menuHelp->menuAction());
         menuOpen->addAction(actionOpen);
+        menuOpen->addAction(actionOpen_Folder);
         menuOpen->addSeparator();
         menuOpen->addAction(actionQuit_Program);
         menuImage->addAction(menuPresets->menuAction());
@@ -312,11 +327,14 @@ public:
         menuRotate->addAction(actionRotate_Left);
         menuCursor->addAction(actionDrag);
         menuCursor->addAction(actionManual_Windowing);
+        menuHelp->addAction(actionHelp);
+        menuHelp->addSeparator();
+        menuHelp->addAction(actionAbout_DicomView);
 
         retranslateUi(MainWindow);
         QObject::connect(actionQuit_Program, SIGNAL(triggered()), MainWindow, SLOT(close()));
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -349,6 +367,9 @@ public:
         actionDrag->setText(QApplication::translate("MainWindow", "Drag", 0, QApplication::UnicodeUTF8));
         actionManual_Windowing->setText(QApplication::translate("MainWindow", "Manual Windowing", 0, QApplication::UnicodeUTF8));
         actionCopy_to_Clipboard->setText(QApplication::translate("MainWindow", "Copy to Clipboard", 0, QApplication::UnicodeUTF8));
+        actionOpen_Folder->setText(QApplication::translate("MainWindow", "Open Folder", 0, QApplication::UnicodeUTF8));
+        actionHelp->setText(QApplication::translate("MainWindow", "Help", 0, QApplication::UnicodeUTF8));
+        actionAbout_DicomView->setText(QApplication::translate("MainWindow", "About DicomView", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_img), QApplication::translate("MainWindow", "Image", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Tag Name", 0, QApplication::UnicodeUTF8));
@@ -357,14 +378,13 @@ public:
         QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
         ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Group:Element", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_tags), QApplication::translate("MainWindow", "Tags", 0, QApplication::UnicodeUTF8));
-        QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
-        ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Dicom Browser", 0, QApplication::UnicodeUTF8));
         menuOpen->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
         menuImage->setTitle(QApplication::translate("MainWindow", "Image", 0, QApplication::UnicodeUTF8));
         menuPresets->setTitle(QApplication::translate("MainWindow", "Presets", 0, QApplication::UnicodeUTF8));
         menuZoom->setTitle(QApplication::translate("MainWindow", "Zoom", 0, QApplication::UnicodeUTF8));
         menuRotate->setTitle(QApplication::translate("MainWindow", "Rotate", 0, QApplication::UnicodeUTF8));
         menuCursor->setTitle(QApplication::translate("MainWindow", "Cursor", 0, QApplication::UnicodeUTF8));
+        menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

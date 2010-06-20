@@ -19,32 +19,26 @@ class DicomItem
 public:
 
     /**
-    * Constructor for DicomItem Class.
+    * Constructor for DicomItem Class.@n
+    * During the creation of new DicomItem element it gathers the date from the original file
+    * and stores them to variables of the class.
     * @param const dicom::DataSet &dset
     */
 
     DicomItem(const dicom::DataSet &dset);
 
-    /**
-    * During the creation of new DicomItem element it gathers the date from the original file
-    * and stores them to variables of the class.
-    */
 
 public:
 
     /**
-    * getImage.
+    * Method which defines a picture thanks to informations from DICOM tags stored in variables: Samples_per_Pixel, Columns, Rows
+    * in class DicomItem.
     * @param UINT8
     * @param int
     * @param int
     * @return void
     */
         void getImage(UINT8 **aImage, int aWindowMin = 0, int aWindowMax = 0) const;
-
-        /**
-        * Method which defines a picture thanks to informations from DICOM tags stored in variables: Samples_per_Pixel, Columns, Rows
-        * in class DicomItem.
-        */
 
 
         /**
@@ -77,54 +71,41 @@ public:
         int CurrentWindowMax() { return iWindowMax; }
 
         /**
-        * toImage.
+        * Method which creates and returns image information in object QImage
         * @param void
         * @return QImage
         */
 
         QImage toImage() const;
 
-        /**
-        * Method which creates and returns image information in object QImage
-        */
 
 
         /**
-        * toPixmap.
+        * Method which translates QImage and returns a QPixmap object
         * @param void
         * @return QPixmap
         */
 
         QPixmap toPixmap() const;
 
-        /**
-        * Method which translates QImage and returns a QPixmap object
-        */
-
 
         /**
-        * min.
+        * Method setting the minimum of window level
         * @param void
         * @return std::vector<int>
         */
 
         std::vector<int> min() const;
 
-        /**
-        * Method setting the minimum of window level
-        */
 
         /**
-        * max.
+        * Method setting the maximum of window level
         * @param void
         * @return std::vector<int>
         */
 
         std::vector<int> max() const;
 
-        /**
-        * Method setting the maximum of window level
-        */
 
     private:
             dicom::Value iPixelData;
@@ -297,7 +278,7 @@ private:
     public:
 
     /**
-    * TagCheck.
+    * Method which checks if the given Tag exists in opened DICOM file
     * @param const dicom::DataSet
     * @param dicom::Tag
     * @param std::string
@@ -305,12 +286,9 @@ private:
     */
     void TagCheck(const dicom::DataSet &dset, dicom::Tag tag, std::string &a);
 
-    /**
-    * Method which checks if the given Tag exists in opened DICOM file
-    */
 
     /**
-    * TagCheck.
+    * Method which checks if the given Tag exists in opened DICOM file
     * @param const dicom::DataSet
     * @param dicom::Tag
     * @param std::UID
@@ -319,12 +297,9 @@ private:
 
     void TagCheck(const dicom::DataSet &dset, dicom::Tag tag, dicom::UID &a);
 
-    /**
-    * Method which checks if the given Tag exists in opened DICOM file
-    */
 
     /**
-    * TagCheck.
+    * Method which checks if the given Tag exists in opened DICOM file
     * @param const dicom::DataSet
     * @param dicom::Tag
     * @param std::UID
@@ -333,9 +308,6 @@ private:
 
     void TagCheck(const dicom::DataSet &dset, dicom::Tag tag, UINT16 &a);
 
-    /**
-    * Method which checks if the given Tag exists in opened DICOM file
-    */
 
 };
 

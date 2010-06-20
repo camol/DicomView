@@ -37,7 +37,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_img">
        <attribute name="title">
@@ -587,7 +587,7 @@
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QTreeWidget" name="treeWidget">
+     <widget class="QTreeView" name="treeView">
       <property name="minimumSize">
        <size>
         <width>214</width>
@@ -600,11 +600,6 @@
         <height>16777215</height>
        </size>
       </property>
-      <column>
-       <property name="text">
-        <string>Dicom Browser</string>
-       </property>
-      </column>
      </widget>
     </item>
    </layout>
@@ -623,6 +618,7 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionOpen_Folder"/>
     <addaction name="separator"/>
     <addaction name="actionQuit_Program"/>
    </widget>
@@ -671,9 +667,18 @@
     <addaction name="actionDrag"/>
     <addaction name="actionManual_Windowing"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout_DicomView"/>
+   </widget>
    <addaction name="menuOpen"/>
    <addaction name="menuImage"/>
    <addaction name="menuCursor"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -813,6 +818,21 @@
   <action name="actionCopy_to_Clipboard">
    <property name="text">
     <string>Copy to Clipboard</string>
+   </property>
+  </action>
+  <action name="actionOpen_Folder">
+   <property name="text">
+    <string>Open Folder</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionAbout_DicomView">
+   <property name="text">
+    <string>About DicomView</string>
    </property>
   </action>
  </widget>
